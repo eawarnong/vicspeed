@@ -226,7 +226,7 @@ public class Refund_view extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the form */ //JAJANAJA
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Refund_view().setVisible(true);
