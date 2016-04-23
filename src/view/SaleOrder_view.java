@@ -76,7 +76,7 @@ public class SaleOrder_view extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel6.setText("รวมทั้งสิ้น");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel7.setText("จำนวนเงินรวม");
@@ -84,7 +84,7 @@ public class SaleOrder_view extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel8.setText("ส่วนลดการค้า");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, -1, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, -1, -1));
 
         totalSO.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jPanel2.add(totalSO, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 110, 20));
@@ -97,9 +97,9 @@ public class SaleOrder_view extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel14.setText("อัตราภาษี(%)");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, -1));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 670, 110));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 670, 140));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -162,7 +162,7 @@ public class SaleOrder_view extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 670, 70));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 670, 130));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
