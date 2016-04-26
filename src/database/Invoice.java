@@ -10,7 +10,7 @@ public class Invoice extends SaleOrder {
 		return 0;
 	}
 
-	public Date getDateInvoice() {
+	public String getDateInvoice() {
 		return null;
 	}
 
@@ -18,7 +18,7 @@ public class Invoice extends SaleOrder {
 		return 0;
 	}
 
-	public Date getDateApprove() {
+	public String getDateApprove() {
 		return null;
 	}
 

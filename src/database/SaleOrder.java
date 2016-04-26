@@ -1,20 +1,23 @@
 package database;
 import java.util.Date;
 import java.util.SortedMap;
+import java.util.HashMap;
 
 public class SaleOrder extends ConnectDB{
 
 	private int soID;
 
 	public int getSoID() {
-		return 0;
+            return soID;
 	}
 
-	public Date getDateSo() {
-		return null;
+	public String getDateSo() {
+            String sql = "SELECT DATE FROM VICSPEED_SALEORDER WHERE SOID = " + soID;
+            HashMap date = db.queryRow(sql);
+            return String.valueOf(date.get("DATE"));
 	}
 
-	public Date getDeadline() {
+	public String getDeadline() {
 		return null;
 	}
 

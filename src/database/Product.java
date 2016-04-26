@@ -1,8 +1,10 @@
 package database;
 public class Product extends ConnectDB{
-
+        
+        private int productID;
+    
 	public int getProductID() {
-		return 0;
+		return productID;
 	}
 
 	public String getProductName() {
