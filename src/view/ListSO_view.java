@@ -2,12 +2,12 @@
 package view;
 import java.awt.Color;
 import javax.swing.JPanel;
-public class ListSO extends javax.swing.JFrame {
+public class ListSO_view extends javax.swing.JFrame {
 
     /**
      * Creates new form Refund_view
      */
-    public ListSO() {
+    public ListSO_view() {
         initComponents();
         //super.setSize(800,600);
         
@@ -99,7 +99,7 @@ public class ListSO extends javax.swing.JFrame {
         /* Create and display the form */ //JAJANAJA
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListSO().setVisible(true);
+                new ListSO_view().setVisible(true);
             }
         });
     }
