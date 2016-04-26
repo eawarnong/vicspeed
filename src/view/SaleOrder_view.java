@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 
-/**
- *
- * @author Oriopun Jaja
- */
 public class SaleOrder_view extends javax.swing.JFrame {
 
     /**
@@ -16,7 +8,7 @@ public class SaleOrder_view extends javax.swing.JFrame {
      */
     public SaleOrder_view() {
         initComponents();
-        super.setSize(800,600);
+        //super.setSize(800,600);
     }
 
     /**
@@ -181,7 +173,7 @@ public class SaleOrder_view extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Sale Order");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/vicspeedBG.png"))); // NOI18N
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
