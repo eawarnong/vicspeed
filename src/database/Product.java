@@ -1,5 +1,5 @@
 package database;
-public class Product {
+public class Product extends ConnectDB{
 
 	public int getProductID() {
 		return 0;

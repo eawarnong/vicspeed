@@ -2,7 +2,7 @@ package database;
 import java.util.Date;
 import java.util.SortedMap;
 
-public class SaleOrder {
+public class SaleOrder extends ConnectDB{
 
 	private int soID;
 
