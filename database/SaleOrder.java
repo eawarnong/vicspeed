@@ -1,5 +1,6 @@
 package database;
 import static database.ConnectDB.db;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.SortedMap;
 import java.util.HashMap;
@@ -56,32 +57,34 @@ public class SaleOrder extends ConnectDB{
 	}
 
 	public int getCustomerID() {
-            String sql = "SELECT CUSTOMERID FROM VICSPEED_CUSTOMER WHERE CUSTOMERID = " + custId;
+            String sql = "SELECT CUSTOMERID FROM VICSPEED_CUSTOMER";
             HashMap custid = db.queryRow(sql);
             return Integer.parseInt(String.valueOf(custid.get("CUSTOMERID")));
 	
 	}
 
 	public String getCustomerName() {
-            String sql = "SELECT FIRSTNAME, LASTNAME FROM VICSPEED_CUSTOMER WHERE CUSTOMERID = " + custId;
+            String sql = "SELECT FIRSTNAME, LASTNAME FROM VICSPEED_CUSTOMER, VICSPEED_SALEORDER WHERE VICSPEED_SALEORDER.CUSTOMERID = VICSPEED_CUSTOMER.CUSTOMERID ";
             HashMap custname = db.queryRow(sql);
             return String.valueOf(custname.get("FIRSTNAME")) + " " + String.valueOf(custname.get("LASTNAME"));
 	}
 
 	public String getCustomerCompany() {
-		String sql = "SELECT COMPANYNAME FROM VICSPEED_SALEORDER WHERE CUSTOMERID = " + custId;
+		String sql = "SELECT COMPANYNAME FROM VICSPEED_CUSTOMER";
             HashMap custcomp = db.queryRow(sql);
             return String.valueOf(custcomp.get("COMPANYNAME"));
 	}
 
 	public String getSaleName() {
-		String sql = "SELECT DATE FROM VICSPEED_SALEORDER WHERE SOID = " + soID;
-            HashMap date = db.queryRow(sql);
-            return String.valueOf(date.get("DATE"));
+		String sql = "SELECT FIRSTNAME, LASTNAME FROM VICSPEED_SALEORDER , VICSPEED_EMPLOYEE WHERE VICSPEED_SALEORDER.EMPID = VICSPEED_EMPLOYEE.EMPID";
+            HashMap sname = db.queryRow(sql);
+            return String.valueOf(sname.get("FIRSTNAME")) + " " + String.valueOf(sname.get("LASTNAME"));
 	}
 
-	public SortedMap getProducts() {
-		return null;
+	public ArrayList<HashMap> getProductsID() {
+            String sql = "SELECT PRODUCTID FROM VICSPEED_PRODUCTSO WHERE SOID = " + soID;
+            ArrayList<HashMap> proid = db.queryRows(sql);
+		return db.queryRows(sql);
 	}
 
 }
@@ -90,7 +93,7 @@ class Test {
     public static void main(String[] args) {
         SaleOrder s = new SaleOrder();
         s.setSoID(40001);
-        s.setCustId(1100000001);
+        
         
         
         System.out.println(s.getSoID());
@@ -98,5 +101,11 @@ class Test {
         System.out.println(s.getDeadline());
         System.out.println(s.getCustomerID());
         System.out.println(s.getCustomerName());
+        System.out.println(s.getCustomerCompany());
+        System.out.println(s.getDiscount());
+        System.out.println(s.getTax());
+         System.out.println(s.getSaleName());
+         System.out.println(s.getProductsID());
+        s.disconnect();
     }
 }
