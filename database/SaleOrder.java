@@ -57,14 +57,14 @@ public class SaleOrder extends ConnectDB{
 	}
 
 	public int getCustomerID() {
-            String sql = "SELECT CUSTOMERID FROM VICSPEED_CUSTOMER";
+            String sql = "SELECT CUSTOMERID FROM VICSPEED_CUSTOMER AND SOID = " + soID;
             HashMap custid = db.queryRow(sql);
             return Integer.parseInt(String.valueOf(custid.get("CUSTOMERID")));
 	
 	}
 
 	public String getCustomerName() {
-            String sql = "SELECT FIRSTNAME, LASTNAME FROM VICSPEED_CUSTOMER, VICSPEED_SALEORDER WHERE VICSPEED_SALEORDER.CUSTOMERID = VICSPEED_CUSTOMER.CUSTOMERID ";
+            String sql = "SELECT FIRSTNAME, LASTNAME FROM VICSPEED_CUSTOMER, VICSPEED_SALEORDER WHERE VICSPEED_SALEORDER.CUSTOMERID = VICSPEED_CUSTOMER.CUSTOMERID AND SOID = " + soID ;
             HashMap custname = db.queryRow(sql);
             return String.valueOf(custname.get("FIRSTNAME")) + " " + String.valueOf(custname.get("LASTNAME"));
 	}
@@ -76,7 +76,7 @@ public class SaleOrder extends ConnectDB{
 	}
 
 	public String getSaleName() {
-		String sql = "SELECT FIRSTNAME, LASTNAME FROM VICSPEED_SALEORDER , VICSPEED_EMPLOYEE WHERE VICSPEED_SALEORDER.EMPID = VICSPEED_EMPLOYEE.EMPID";
+		String sql = "SELECT FIRSTNAME, LASTNAME FROM VICSPEED_SALEORDER , VICSPEED_EMPLOYEE WHERE VICSPEED_SALEORDER.EMPID = VICSPEED_EMPLOYEE.EMPID AND SOID = " + soID;
             HashMap sname = db.queryRow(sql);
             return String.valueOf(sname.get("FIRSTNAME")) + " " + String.valueOf(sname.get("LASTNAME"));
 	}
