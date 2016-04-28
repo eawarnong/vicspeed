@@ -8,17 +8,51 @@ public class ListSo extends ConnectDB{
             super();
         }
 
-        public ArrayList<HashMap> getAllInvoice(int soid) {
+        private ArrayList<HashMap> getAllInvoiceProducts(int soid) {
             String sql = "SELECT PRODUCTID, AMOUNT "
                     + "FROM VICSPEED_INVOICE, VICSPEED_PRODUCTINV "
                     + "WHERE VICSPEED_INVOICE.INVOICEID = VICSPEED_PRODUCTINV.INVOICEID "
                     + "AND SOID = " + soid;
-            ArrayList<HashMap> allInvoice = db.queryRows(sql);
-            return allInvoice;
+            return db.queryRows(sql);
+        }
+        
+        private ArrayList<HashMap> getSaleOrderProducts(int soid) {
+            String sql = "SELECT PRODUCTID, AMOUNT "
+                    + "FROM VICSPEED_PRODUCTSO "
+                    + "WHERE SOID = " + soid;
+            return db.queryRows(sql);
+        }
+        
+        private ArrayList<HashMap> getAllSaleOrderIDs() {
+            String sql = "SELECT SOID FROM VICSPEED_SALEORDER";
+            return db.queryRows(sql);
+        }
+        
+        public void mergeInvoiceProducts(int soid) {
+            ArrayList<HashMap> invs = getAllInvoiceProducts(soid);
+            ArrayList<HashMap> mergeInvs = new ArrayList();
+            for(HashMap inv : invs) {
+                if(mergeInvs.contains(inv.get("PRODUCTID"))) {
+                    int index = mergeInvs.indexOf(inv.get("PRODUCTID"));
+                    int invAmount = Integer.parseInt(String.valueOf(inv.get("AMOUNT")));
+                    int oldMergeAmount = Integer.parseInt(String.valueOf(mergeInvs.get(index).get("AMOUNT")));
+                    int newAmount = invAmount + oldMergeAmount;
+                    HashMap newInv = new HashMap();
+                    newInv.put(inv.get("PRODUCTID"), newAmount);
+                    mergeInvs.set(index, newInv);
+                } else {
+                    mergeInvs.add(inv);
+                }
+            }
         }
         
 	public ArrayList<HashMap> getNormalSoIDs() {
-		String sql = "SELECT SOID FROM SALEORDER WHERE ";
+           // ArrayList<HashMap> soids = getAllSaleOrderIDs();
+            /*for(HashMap soid : soids) {
+                
+            }*/
+            
+		//ArrayList<HashMap> invs = getAllInvoiceProducts(soid);
                 return null;
 	}
 
@@ -30,10 +64,31 @@ public class ListSo extends ConnectDB{
 class TestList {
     public static void main(String[] args) {
         ListSo l = new ListSo();
-        ArrayList<HashMap> a = l.getAllInvoice(40001);
-        //System.out.println(l.getAllInvoice(40001));
+        
+        /*
+        ArrayList<HashMap> a = l.getAllInvoiceProducts(40001);
+        System.out.println("Product id and amount of invoice");
         for(HashMap h : a) {
-            System.out.println(h.get("PRODUCTID"));
+            System.out.println("PRODUCTID " + h.get("PRODUCTID") + " AMOUNT " + h.get("AMOUNT"));
         }
+        
+        System.out.println("");
+        
+        a = l.getSaleOrderProducts(40001);
+        System.out.println("Product id and amount of sale order");
+        for(HashMap h : a) {
+            System.out.println("PRODUCTID " + h.get("PRODUCTID") + " AMOUNT " + h.get("AMOUNT"));
+        }
+        
+        System.out.println("");
+        
+        a = l.getAllSaleOrderIDs();
+        System.out.println("show all sale order id");
+        for(HashMap h : a) {
+            System.out.println(h.get("SOID"));
+        }
+        */
+        
+        //l.disconnect();
     }
 }
