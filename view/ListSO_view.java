@@ -5,14 +5,22 @@
  */
 package view;
 import database.ListSo;
+import java.awt.BorderLayout;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.DimensionUIResource;
 
 /**
@@ -27,36 +35,60 @@ public class ListSO_view extends javax.swing.JFrame {
     ListSo list;
     
     public ListSO_view() {
-        list = new ListSo();
+        //list = new ListSo();
         
         initComponents();
         //mainPanel.setBackground(Color.RED);
-        mainPanel.setBackground(Color.BLUE);
-        addListSOs(list.getProblemSoIDs());
-        addListSOs(list.getNormalSoIDs());
-        for(int i = 0; i < 30; i++) {
-            JPanel pnl = new JPanel();
-            JLabel lbl = new JLabel();
-            lbl.setText("555555555");
-            lbl.setFont(new java.awt.Font("Angsana New", 0, 20));
-            pnl.add(lbl);
-            
-            mainPanel.add(Box.createRigidArea(new Dimension(0, 3)));
-            mainPanel.add(pnl);
-        }
+        //mainPanel.setBackground(Color.BLUE);
+        //addListSOs(list.getProblemSoIDs(), Color.RED);
+        //addListSOs(list.getNormalSoIDs(), Color.WHITE);
+        addListSOs();
     }
 
-    public void addListSOs(ArrayList<HashMap> lists) {
-        for(HashMap list : lists) {
-            JPanel pnl = new JPanel();
+    public void addListSOs(/*ArrayList<HashMap> lists, Color color*/) {
+        //for(HashMap list : lists) {
+        for(int i = 0; i < 15; i++) {
+            JPanel pnlLine = new JPanel();
+            JPanel pnlButton = new JPanel();
             JLabel lbl = new JLabel();
-            lbl.setText(String.valueOf(list.get("SOID")));
-            lbl.setFont(new java.awt.Font("Angsana New", 0, 20));
-            pnl.add(lbl);
             
-            mainPanel.add(Box.createRigidArea(new Dimension(0, 3)));
-            mainPanel.add(pnl);
+            // set proporty of pnlLine
+            pnlLine.setLayout(new BorderLayout());
+            pnlLine.setBorder(new javax.swing.border.LineBorder(Color.BLACK, 1, false));
+            pnlLine.setMinimumSize(new Dimension(mainPanel.getWidth() - 15, 40));
+            pnlLine.setPreferredSize(new Dimension(mainPanel.getWidth() - 15, 40));
+            pnlLine.setMaximumSize(new Dimension(mainPanel.getWidth() - 15, 40));
+            //pnlLine.setBackground(color);
+            
+            //lbl.setText(String.valueOf(list.get("SOID")));
+            //lbl.setFont(new java.awt.Font("Angsana New", 0, 20));
+            lbl.setText("555555555");
+            lbl.setFont(new java.awt.Font("Angsana New", 0, 20));
+            lbl.setBorder(new EmptyBorder(0, 5, 0, 0));
+            pnlLine.add(lbl, BorderLayout.WEST);
+            
+            pnlButton.setLayout(new BorderLayout());
+            pnlButton.add(new SOButton());
+            pnlLine.add(pnlButton, BorderLayout.EAST);
+            
+            mainPanel.add(pnlLine);
         }
+    }
+    
+    class SOButton extends JButton {
+        
+        public SOButton() {
+            init();
+        }
+        
+        public void init() {
+            addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent e) {
+                    new SaleOrder_view().setVisible(true);
+                }
+            });
+        }
+        
     }
 
     /**
