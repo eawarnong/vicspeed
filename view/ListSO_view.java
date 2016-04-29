@@ -4,9 +4,16 @@
  * and open the template in the editor.
  */
 package view;
+import database.ListSo;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.Box;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.plaf.DimensionUIResource;
 
 /**
  *
@@ -17,14 +24,38 @@ public class ListSO_view extends javax.swing.JFrame {
     /**
      * Creates new form ListSO_view
      */
+    ListSo list;
+    
     public ListSO_view() {
+        list = new ListSo();
+        
         initComponents();
         //mainPanel.setBackground(Color.RED);
-        for(int i = 0; i < 10; i++) {
-            JLabel l = new JLabel();
-            l.setSize(600, 20);
-            l.setText("555555555555555555555555555");
-            mainPanel.add(l);
+        mainPanel.setBackground(Color.BLUE);
+        addListSOs(list.getProblemSoIDs());
+        addListSOs(list.getNormalSoIDs());
+        for(int i = 0; i < 30; i++) {
+            JPanel pnl = new JPanel();
+            JLabel lbl = new JLabel();
+            lbl.setText("555555555");
+            lbl.setFont(new java.awt.Font("Angsana New", 0, 20));
+            pnl.add(lbl);
+            
+            mainPanel.add(Box.createRigidArea(new Dimension(0, 3)));
+            mainPanel.add(pnl);
+        }
+    }
+
+    public void addListSOs(ArrayList<HashMap> lists) {
+        for(HashMap list : lists) {
+            JPanel pnl = new JPanel();
+            JLabel lbl = new JLabel();
+            lbl.setText(String.valueOf(list.get("SOID")));
+            lbl.setFont(new java.awt.Font("Angsana New", 0, 20));
+            pnl.add(lbl);
+            
+            mainPanel.add(Box.createRigidArea(new Dimension(0, 3)));
+            mainPanel.add(pnl);
         }
     }
 
@@ -42,6 +73,7 @@ public class ListSO_view extends javax.swing.JFrame {
         jTextField = new javax.swing.JTextField();
         jBtnSearch = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jScrollPanel = new javax.swing.JScrollPane();
         mainPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -51,6 +83,7 @@ public class ListSO_view extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jComboBox.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "เลขที่ใบสั่งขาย", "วันที่เอกสารใบสั่งขาย", "รหัสลูกค้า", "ชื่อลูกค้า", "ชื่อบริษัท" }));
         jComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,23 +92,29 @@ public class ListSO_view extends javax.swing.JFrame {
         });
         jPanel1.add(jComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 170, -1));
 
+        jTextField.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 200, -1));
+        jPanel1.add(jTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 200, 30));
 
+        jBtnSearch.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jBtnSearch.setText("ค้นหา");
         jPanel1.add(jBtnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 700, 50));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 700, 60));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("List Sale Order");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, -1, -1));
-        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 700, 410));
+
+        mainPanel.setLayout(new javax.swing.BoxLayout(mainPanel, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPanel.setViewportView(mainPanel);
+
+        getContentPane().add(jScrollPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 700, 410));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/vicspeedBG.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
@@ -132,6 +171,7 @@ public class ListSO_view extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPanel;
     private javax.swing.JTextField jTextField;
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables

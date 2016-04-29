@@ -8,11 +8,17 @@ public class ListSo extends ConnectDB {
     public ListSo() {
         super();
     }
+    
+    private ArrayList<HashMap> getAllSaleOrders() {
+        String sql = "SELECT SOID FROM VICSPEED_SALEORDER";
+        return db.queryRows(sql);
+    }
 
     public ArrayList<HashMap> getNormalSoIDs() {
         ArrayList<HashMap> SOs = getAllSaleOrders();
         ArrayList<HashMap> problemSOs = getProblemSoIDs();
         ArrayList<HashMap> normalSOs = new ArrayList();
+        
         for(HashMap SO : SOs) {
             if(problemSOs.contains(SO)) {
                 continue;
@@ -23,15 +29,10 @@ public class ListSo extends ConnectDB {
         return normalSOs;
     }
     
-    public ArrayList<HashMap> getAllSaleOrders() {
-        String sql = "SELECT SOID FROM VICSPEED_SALEORDER";
-        return db.queryRows(sql);
-    }
-
     public ArrayList<HashMap> getProblemSoIDs() {
-        String sql = "SELECT SO.SOID"
+        String sql = "SELECT DISTINCT SO.SOID"
                 + " FROM VICSPEED_SALEORDER AS SO, VICSPEED_PRODUCTSO AS P_SO"
-                + " WHERE SO.SOID = P_SO.SOID"
+                + " WHERE SO.SOID = P_SO.SOID AND DEADLINE < CURDATE()"
                 + " AND (PRODUCTID, AMOUNT) NOT IN (SELECT PRODUCTID, SUM(AMOUNT) AS AMOUNT"
                 +                 " FROM VICSPEED_INVOICE AS INV, VICSPEED_PRODUCTINV AS P_INV"
                 +                 " WHERE INV.INVOICEID = P_INV.INVOICEID"
