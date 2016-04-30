@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class SaleOrder extends ConnectDB {
 
     private int soID;
-
+    
     public SaleOrder() {
         super();
     }
