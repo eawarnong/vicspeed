@@ -8,8 +8,14 @@ public class Refund_view extends javax.swing.JFrame {
     /**
      * Creates new form Refund_view
      */
+    private int soid;
+    
     public Refund_view() {
         initComponents();
+                
+        SaleOrder s = new SaleOrder();
+        s.setSoID(soid);
+       
         showData();
         //super.setSize(800,600);
     }
@@ -203,7 +209,7 @@ public class Refund_view extends javax.swing.JFrame {
         
         customerID.setText(String.valueOf(s.getCustomerID()));
         customerName.setText(s.getCustomerName());
-        SOid.setText(String.valueOf(s.getSoID()));
+        SOid.setText(String.valueOf(soid));
         companyName.setText(s.getCustomerCompany());
         
         /*invoiceList.setModel(new javax.swing.AbstractListModel() {
