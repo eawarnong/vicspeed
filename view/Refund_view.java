@@ -87,13 +87,13 @@ public class Refund_view extends javax.swing.JFrame {
         jLabel8.setText("จำนวนเงินรวมในใบกำกับ");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
 
-        totalSO.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        totalSO.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel2.add(totalSO, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 110, 20));
 
-        totalInvoice.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        totalInvoice.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel2.add(totalInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 110, 20));
 
-        refund.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        refund.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel2.add(refund, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 110, 20));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 670, 110));
@@ -117,6 +117,7 @@ public class Refund_view extends javax.swing.JFrame {
         jLabel4.setText("ชื่อบริษัท");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
 
+        invoiceList.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         invoiceList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -124,22 +125,22 @@ public class Refund_view extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(invoiceList);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 160, 40));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 160, 50));
 
         jLabel11.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel11.setText("รหัสลูกค้า");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
-        SOid.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        SOid.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel1.add(SOid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 110, 20));
 
-        companyName.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        companyName.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel1.add(companyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 110, 20));
 
         LastName.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jPanel1.add(LastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 110, 20));
 
-        customerID.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        customerID.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         customerID.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 customerIDComponentShown(evt);
@@ -147,13 +148,13 @@ public class Refund_view extends javax.swing.JFrame {
         });
         jPanel1.add(customerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 110, 20));
 
-        customerName.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        customerName.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel1.add(customerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 110, 20));
 
         jLabel17.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 110, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 670, 100));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 670, 110));
 
         soTable.setFont(new java.awt.Font("Angsana New", 0, 14)); // NOI18N
         soTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -212,6 +213,7 @@ public class Refund_view extends javax.swing.JFrame {
         customerName.setText(s.getCustomerName());
         SOid.setText(soid+"");
         companyName.setText(s.getCustomerCompany());
+       
         
         /*invoiceList.setModel(new javax.swing.AbstractListModel() {
         

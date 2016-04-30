@@ -106,7 +106,7 @@
         <Component class="javax.swing.JLabel" name="totalSO">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -118,7 +118,7 @@
         <Component class="javax.swing.JLabel" name="totalInvoice">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -130,7 +130,7 @@
         <Component class="javax.swing.JLabel" name="refund">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -155,7 +155,7 @@
         <Component class="javax.swing.JLabel" name="refund1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -239,7 +239,7 @@
         <Component class="javax.swing.JLabel" name="SOid">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -251,7 +251,7 @@
         <Component class="javax.swing.JLabel" name="amountInvoice">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -275,7 +275,7 @@
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -287,7 +287,7 @@
         <Component class="javax.swing.JLabel" name="FirstName">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -299,7 +299,7 @@
         <Component class="javax.swing.JLabel" name="jLabel17">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -361,7 +361,7 @@
         <Component class="javax.swing.JLabel" name="amountInvoice2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
