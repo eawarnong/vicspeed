@@ -65,7 +65,10 @@ public class SaleOrder extends ConnectDB {
     }
 
     public String getCustomerCompany() {
-        String sql = "SELECT COMPANYNAME FROM VICSPEED_CUSTOMER WHERE SOID " + soID;
+        String sql = "SELECT COMPANYNAME"
+                + " FROM VICSPEED_CUSTOMER AS CUS, VICSPEED_SALEORDER AS SO"
+                + " WHERE SOID = " + soID
+                + " AND CUS.CUSTOMERID = SO.CUSTOMERID";
         HashMap custcomp = db.queryRow(sql);
         return String.valueOf(custcomp.get("COMPANYNAME"));
     }

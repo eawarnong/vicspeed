@@ -19,6 +19,12 @@ public class Invoice extends ConnectDB {
     public int getInvoiceID() {
         return invoiceID;
     }
+    
+    public String getSOID() {
+        String sql = "SELECT SOID FROM VICSPEED_INVOICE WHERE INVOICEID = " + invoiceID;
+        HashMap soid = db.queryRow(sql);
+        return String.valueOf(soid.get("SOID"));
+    }
 
     public String getDateInvoice() {
         String sql = "SELECT DATE FROM VICSPEED_INVOICE WHERE INVOICEID = " + invoiceID;
@@ -36,6 +42,31 @@ public class Invoice extends ConnectDB {
         String sql = "SELECT DATEAPPROVE FROM VICSPEED_INVOICE WHERE INVOICEID = " + invoiceID;
         HashMap dateapp = db.queryRow(sql);
         return String.valueOf(dateapp.get("DATEAPPROVE"));
+    }
+    
+    public String getCustomerID() {
+        String sql = "SELECT CUSTOMERID FROM VICSPEED_INVOICE AS INV, VICSPEED_SALEORDER AS SO"
+                + " WHERE INV.SOID = SO.SOID AND INVOICEID = " + invoiceID;
+        HashMap cusid = db.queryRow(sql);
+        return String.valueOf(cusid.get("CUSTOMERID"));
+    }
+    
+    public String getCustomerName() {
+        String sql = "SELECT FIRSTNAME, LASTNAME"
+                + " FROM VICSPEED_INVOICE AS INV, VICSPEED_CUSTOMER AS CUS, VICSPEED_SALEORDER AS SO"
+                + " WHERE INVOICEID = " + invoiceID
+                + " AND INV.SOID = SO.SOID AND SO.CUSTOMERID = CUS.CUSTOMERID";
+        HashMap cusName = db.queryRow(sql);
+        return String.valueOf(cusName.get("FIRSTNAME")) + " " + String.valueOf(cusName.get("LASTNAME"));
+    }
+    
+    public String getCompanyName() {
+        String sql = "SELECT COMPANYNAME"
+                + " FROM VICSPEED_INVOICE AS INV, VICSPEED_CUSTOMER AS CUS, VICSPEED_SALEORDER AS SO"
+                + " WHERE INV.INVOICEID = " + invoiceID
+                + " AND INV.SOID = SO.SOID AND SO.CUSTOMERID = CUS.CUSTOMERID";
+        HashMap comName = db.queryRow(sql);
+        return String.valueOf(comName.get("COMPANYNAME"));
     }
 
     public ArrayList<HashMap> getProductIDs() {
@@ -78,6 +109,9 @@ class testInv {
         System.out.println(i.getDateApprove());
         System.out.println(i.getProductIDs());
         System.out.println("");
+        System.out.println(i.getCustomerID());
+        System.out.println(i.getCustomerName());
+        System.out.println(i.getCompanyName());
 
         i.disconnect();
     }
