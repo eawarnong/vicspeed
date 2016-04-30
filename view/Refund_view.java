@@ -1,6 +1,8 @@
 
 package view;
 
+import database.SaleOrder;
+
 public class Refund_view extends javax.swing.JFrame {
 
     /**
@@ -8,6 +10,7 @@ public class Refund_view extends javax.swing.JFrame {
      */
     public Refund_view() {
         initComponents();
+        showData();
         //super.setSize(800,600);
     }
 
@@ -36,13 +39,13 @@ public class Refund_view extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        invoiceList = new javax.swing.JList();
         jLabel11 = new javax.swing.JLabel();
         SOid = new javax.swing.JLabel();
         companyName = new javax.swing.JLabel();
         LastName = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        FirstName = new javax.swing.JLabel();
+        customerID = new javax.swing.JLabel();
+        customerName = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -53,18 +56,17 @@ public class Refund_view extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Invoice.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, 50));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, 30));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/SO.png"))); // NOI18N
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 90, 50));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 90, 30));
 
         jButton2.setFont(new java.awt.Font("Angsana New", 0, 18)); // NOI18N
         jButton2.setText("เสร็จสิ้น");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 550, -1, 25));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 510, -1, 25));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -89,7 +91,7 @@ public class Refund_view extends javax.swing.JFrame {
         refund.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jPanel2.add(refund, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 110, 20));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 670, 110));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 670, 110));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -110,14 +112,14 @@ public class Refund_view extends javax.swing.JFrame {
         jLabel4.setText("ชื่อบริษัท");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        invoiceList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList1);
+        jScrollPane2.setViewportView(invoiceList);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 160, 50));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 160, 70));
 
         jLabel11.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel11.setText("รหัสลูกค้า");
@@ -132,16 +134,21 @@ public class Refund_view extends javax.swing.JFrame {
         LastName.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jPanel1.add(LastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 110, 20));
 
-        jLabel15.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 110, 20));
+        customerID.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        customerID.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                customerIDComponentShown(evt);
+            }
+        });
+        jPanel1.add(customerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 110, 20));
 
-        FirstName.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
-        jPanel1.add(FirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 110, 20));
+        customerName.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        jPanel1.add(customerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 110, 20));
 
         jLabel17.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 110, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 670, 110));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 670, 120));
 
         jTable1.setFont(new java.awt.Font("Angsana New", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -157,7 +164,7 @@ public class Refund_view extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 670, 90));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 670, 70));
 
         jTable2.setFont(new java.awt.Font("Angsana New", 0, 14)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -173,7 +180,7 @@ public class Refund_view extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable2);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 670, 90));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 670, 70));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -186,6 +193,36 @@ public class Refund_view extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void customerIDComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_customerIDComponentShown
+        // TODO add your handling code here:
+        //customerID.setText("text");
+    }//GEN-LAST:event_customerIDComponentShown
+
+    private void showData() {
+        SaleOrder s = new SaleOrder();
+        
+        customerID.setText(String.valueOf(s.getCustomerID()));
+        customerName.setText(s.getCustomerName());
+        SOid.setText(String.valueOf(s.getSoID()));
+        companyName.setText(s.getCustomerCompany());
+        
+        /*invoiceList.setModel(new javax.swing.AbstractListModel() {
+        
+        
+        String[] strings = { "Naja", "Item 2", "Item 3", "Item 4", "Item 5" };
+        public int getSize() {
+        return strings.length;
+        }
+        
+        public Object getElementAt(int i) {
+        return strings[i];
+        }
+        
+        });*/
+ 
+        
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -222,16 +259,17 @@ public class Refund_view extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel FirstName;
     private javax.swing.JLabel LastName;
     private javax.swing.JLabel SOid;
     private javax.swing.JLabel companyName;
+    private javax.swing.JLabel customerID;
+    private javax.swing.JLabel customerName;
+    private javax.swing.JList invoiceList;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -241,7 +279,6 @@ public class Refund_view extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
