@@ -86,7 +86,7 @@ public class ListSO_view extends javax.swing.JFrame {
 
     public static boolean isNumeric(String str) {
         try {
-            double d = Double.parseDouble(str);
+            int i = Integer.parseInt(str);
         } catch (NumberFormatException nfe) {
             return false;
         }
