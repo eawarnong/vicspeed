@@ -38,7 +38,7 @@ public class Invoice extends ConnectDB {
         return String.valueOf(dateapp.get("DATEAPPROVE"));
     }
 
-    public ArrayList<HashMap> getProductsID() {
+    public ArrayList<HashMap> getProductIDs() {
         String sql = "SELECT PRODUCTID FROM VICSPEED_PRODUCTINV"
                 + " WHERE INVOICEID = " + invoiceID;
         ArrayList<HashMap> proid = db.queryRows(sql);
@@ -46,7 +46,7 @@ public class Invoice extends ConnectDB {
     }
 
     public ArrayList<HashMap> getProducts() {
-        ArrayList<HashMap> proids = getProductsID();
+        ArrayList<HashMap> proids = getProductIDs();
         ArrayList<HashMap> products = new ArrayList<HashMap>();
         for (HashMap proid : proids) {
             Product product = new Product();
@@ -76,7 +76,7 @@ class testInv {
         System.out.println(i.getDateInvoice());
         System.out.println(i.getApproveID());
         System.out.println(i.getDateApprove());
-        System.out.println(i.getProductsID());
+        System.out.println(i.getProductIDs());
         System.out.println("");
 
         i.disconnect();
