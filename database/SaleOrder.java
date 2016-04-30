@@ -51,14 +51,15 @@ public class SaleOrder extends ConnectDB {
     }
 
     public int getCustomerID() {
-        String sql = "SELECT CUSTOMERID FROM VICSPEED_CUSTOMER WHERE SOID = " + soID;
+        String sql = "SELECT CUSTOMERID FROM VICSPEED_SALEORDER WHERE SOID = " + soID;
         HashMap custid = db.queryRow(sql);
         return Integer.parseInt(String.valueOf(custid.get("CUSTOMERID")));
 
     }
 
     public String getCustomerName() {
-        String sql = "SELECT FIRSTNAME, LASTNAME FROM VICSPEED_CUSTOMER, VICSPEED_SALEORDER WHERE VICSPEED_SALEORDER.CUSTOMERID = VICSPEED_CUSTOMER.CUSTOMERID AND SOID = " + soID;
+        String sql = "SELECT FIRSTNAME, LASTNAME FROM VICSPEED_CUSTOMER, VICSPEED_SALEORDER "
+                + "WHERE VICSPEED_SALEORDER.CUSTOMERID = VICSPEED_CUSTOMER.CUSTOMERID AND SOID = " + soID;
         HashMap custname = db.queryRow(sql);
         return String.valueOf(custname.get("FIRSTNAME")) + " " + String.valueOf(custname.get("LASTNAME"));
     }
@@ -105,6 +106,7 @@ class Test {
 
     public static void main(String[] args) {
         SaleOrder s = new SaleOrder();
+        s.connect();
         s.setSoID(40001);
 
         System.out.println(s.getSoID());

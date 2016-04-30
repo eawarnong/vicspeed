@@ -149,22 +149,6 @@ public class ListSO_view extends javax.swing.JFrame {
 
     }
 
-    class SOButton extends JButton {
-
-        public SOButton() {
-            init();
-        }
-
-        public void init() {
-            addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent e) {
-                    new SaleOrder_view().setVisible(true);
-                }
-            });
-        }
-
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
