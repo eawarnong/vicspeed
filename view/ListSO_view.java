@@ -36,7 +36,7 @@ public class ListSO_view extends javax.swing.JFrame {
 
         initComponents();
         addListSOs(list.getAllSaleOrders()); //default listSOs
-
+ 
         list.disconnect();
     }
 
@@ -84,7 +84,7 @@ public class ListSO_view extends javax.swing.JFrame {
         list.disconnect();
     }
 
-    public static boolean isNumeric(String str) {
+    private static boolean isNumeric(String str) {
         try {
             int i = Integer.parseInt(str);
         } catch (NumberFormatException nfe) {
@@ -191,10 +191,20 @@ public class ListSO_view extends javax.swing.JFrame {
 
         searchBox.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         searchBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "เลขที่ใบสั่งขาย", "วันที่เอกสารใบสั่งขาย", "รหัสลูกค้า", "ชื่อลูกค้า", "ชื่อบริษัท", "ใบสั่งขายปกติ", "ใบสั่งขายผิดปกติ" }));
+        searchBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBoxActionPerformed(evt);
+            }
+        });
         jPanel1.add(searchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 170, -1));
 
         searchText.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
-        jPanel1.add(searchText, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 200, 30));
+        searchText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchTextMouseClicked(evt);
+            }
+        });
+        jPanel1.add(searchText, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 200, 40));
 
         searchBtn.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         searchBtn.setText("ค้นหา");
@@ -226,6 +236,38 @@ public class ListSO_view extends javax.swing.JFrame {
     private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
         searchingSO();
     }//GEN-LAST:event_searchBtnMouseClicked
+
+    private void searchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBoxActionPerformed
+        list.connect();
+        String selectItem = String.valueOf(searchBox.getSelectedItem());
+        switch (selectItem) {
+            case "ใบสั่งขายปกติ":
+                mainPanel.removeAll();
+                mainPanel.revalidate();
+                searchText.setText("");
+                addListSOs(list.getNormalSoIDs());
+                mainPanel.repaint();
+                break;
+            case "ใบสั่งขายผิดปกติ":
+                mainPanel.removeAll();
+                mainPanel.revalidate();
+                searchText.setText("");
+                addListSOs(list.getProblemSoIDs());
+                mainPanel.repaint();
+                break;
+            case "วันที่เอกสารใบสั่งขาย":
+                searchText.setText("yyyy-mm-dd");
+                searchText.setForeground(new Color(153,153,153));
+        }
+        list.disconnect();
+    }//GEN-LAST:event_searchBoxActionPerformed
+
+    private void searchTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchTextMouseClicked
+        searchText.setForeground(Color.BLACK);
+        if(searchText.getText().equals("yyyy-mm-dd")) {
+            searchText.setText("");
+        }
+    }//GEN-LAST:event_searchTextMouseClicked
 
     /**
      * @param args the command line arguments
