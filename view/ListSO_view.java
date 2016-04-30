@@ -4,24 +4,20 @@
  * and open the template in the editor.
  */
 package view;
-import database.ListSo;
-import java.awt.BorderLayout;
 
+import database.ListSo;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.DimensionUIResource;
 
 /**
  *
@@ -33,54 +29,132 @@ public class ListSO_view extends javax.swing.JFrame {
      * Creates new form ListSO_view
      */
     ListSo list;
-    
+
     public ListSO_view() {
-        //list = new ListSo();
-        
+        list = new ListSo();
+        list.connect();
+
         initComponents();
-        //mainPanel.setBackground(Color.RED);
-        //mainPanel.setBackground(Color.BLUE);
-        //addListSOs(list.getProblemSoIDs(), Color.RED);
-        //addListSOs(list.getNormalSoIDs(), Color.WHITE);
-        addListSOs();
+        addListSOs(list.getAllSaleOrders()); //default listSOs
+
+        list.disconnect();
     }
 
-    public void addListSOs(/*ArrayList<HashMap> lists, Color color*/) {
-        //for(HashMap list : lists) {
-        for(int i = 0; i < 15; i++) {
-            JPanel pnlLine = new JPanel();
+    public void searchingSO() {
+        list.connect();
+        String selectItem = String.valueOf(searchBox.getSelectedItem());
+        String text = searchText.getText();
+
+        mainPanel.removeAll();
+        mainPanel.revalidate();
+
+        switch (selectItem) {
+            case "เลขที่ใบสั่งขาย":
+                if (isNumeric(text)) {
+                    addListSOs(list.getSO(Integer.parseInt(text)));
+                }
+                break;
+            case "วันที่เอกสารใบสั่งขาย":
+                addListSOs(list.getDateSO(text));
+                break;
+            case "รหัสลูกค้า":
+                if (isNumeric(text)) {
+                    addListSOs(list.getCusIdSO(Integer.parseInt(text)));
+                }
+                break;
+            case "ชื่อลูกค้า":
+                addListSOs(list.getCusNameSO(text));
+                break;
+            case "ชื่อบริษัท":
+                addListSOs(list.getCompanySO(text));
+                break;
+            case "ใบสั่งขายปกติ":
+                searchText.setText("");
+                addListSOs(list.getNormalSoIDs());
+                break;
+            case "ใบสั่งขายผิดปกติ":
+                searchText.setText("");
+                addListSOs(list.getProblemSoIDs());
+                break;
+            default:
+                addListSOs(list.getAllSaleOrders());
+        }
+
+        mainPanel.repaint();
+        list.disconnect();
+    }
+
+    public static boolean isNumeric(String str) {
+        try {
+            double d = Double.parseDouble(str);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkProblemSOs(int soid) {
+        ArrayList<HashMap> SOs = list.getProblemSoIDs();
+        for (HashMap SO : SOs) {
+            if (Integer.parseInt(String.valueOf(SO.get("SOID"))) == soid) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addListSOs(ArrayList<HashMap> lists) {
+        for (HashMap list : lists) {
+            int soid = Integer.parseInt(String.valueOf(list.get("SOID")));
+            PnlLine pnlLine = new PnlLine();
             JPanel pnlButton = new JPanel();
             JLabel lbl = new JLabel();
-            
-            // set proporty of pnlLine
-            pnlLine.setLayout(new BorderLayout());
-            pnlLine.setBorder(new javax.swing.border.LineBorder(Color.BLACK, 1, false));
-            pnlLine.setMinimumSize(new Dimension(mainPanel.getWidth() - 15, 40));
-            pnlLine.setPreferredSize(new Dimension(mainPanel.getWidth() - 15, 40));
-            pnlLine.setMaximumSize(new Dimension(mainPanel.getWidth() - 15, 40));
-            //pnlLine.setBackground(color);
-            
-            //lbl.setText(String.valueOf(list.get("SOID")));
-            //lbl.setFont(new java.awt.Font("Angsana New", 0, 20));
-            lbl.setText("555555555");
+
+            lbl.setText(soid + "");
             lbl.setFont(new java.awt.Font("Angsana New", 0, 20));
             lbl.setBorder(new EmptyBorder(0, 5, 0, 0));
             pnlLine.add(lbl, BorderLayout.WEST);
-            
+
             pnlButton.setLayout(new BorderLayout());
-            pnlButton.add(new SOButton());
-            pnlLine.add(pnlButton, BorderLayout.EAST);
-            
+            //pnlButton.add(new SOButton(), BorderLayout.EAST); // Button for go to Sale Order page
+            //pnlLine.add(pnlButton, BorderLayout.EAST);
+
+            if (checkProblemSOs(soid)) {
+                pnlLine.setColor(Color.RED);
+            } else {
+                pnlLine.setColor(Color.WHITE);
+            }
             mainPanel.add(pnlLine);
         }
     }
-    
+
+    class PnlLine extends JPanel {
+
+        public PnlLine() {
+            init();
+        }
+
+        public void init() {
+            // set proporty of pnlLine
+            setLayout(new BorderLayout());
+            setBorder(new javax.swing.border.LineBorder(Color.BLACK, 1, false));
+            setMinimumSize(new Dimension(mainPanel.getWidth() - 15, 40));
+            setPreferredSize(new Dimension(mainPanel.getWidth() - 15, 40));
+            setMaximumSize(new Dimension(mainPanel.getWidth() - 15, 40));
+        }
+
+        public void setColor(Color color) {
+            setBackground(color);
+        }
+
+    }
+
     class SOButton extends JButton {
-        
+
         public SOButton() {
             init();
         }
-        
+
         public void init() {
             addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent e) {
@@ -88,7 +162,7 @@ public class ListSO_view extends javax.swing.JFrame {
                 }
             });
         }
-        
+
     }
 
     /**
@@ -101,9 +175,9 @@ public class ListSO_view extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jComboBox = new javax.swing.JComboBox();
-        jTextField = new javax.swing.JTextField();
-        jBtnSearch = new javax.swing.JButton();
+        searchBox = new javax.swing.JComboBox();
+        searchText = new javax.swing.JTextField();
+        searchBtn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jScrollPanel = new javax.swing.JScrollPane();
         mainPanel = new javax.swing.JPanel();
@@ -115,26 +189,21 @@ public class ListSO_view extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
-        jComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "เลขที่ใบสั่งขาย", "วันที่เอกสารใบสั่งขาย", "รหัสลูกค้า", "ชื่อลูกค้า", "ชื่อบริษัท" }));
-        jComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxActionPerformed(evt);
+        searchBox.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        searchBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "เลขที่ใบสั่งขาย", "วันที่เอกสารใบสั่งขาย", "รหัสลูกค้า", "ชื่อลูกค้า", "ชื่อบริษัท", "ใบสั่งขายปกติ", "ใบสั่งขายผิดปกติ" }));
+        jPanel1.add(searchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 170, -1));
+
+        searchText.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        jPanel1.add(searchText, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 200, 30));
+
+        searchBtn.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        searchBtn.setText("ค้นหา");
+        searchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchBtnMouseClicked(evt);
             }
         });
-        jPanel1.add(jComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 170, -1));
-
-        jTextField.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
-        jTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 200, 30));
-
-        jBtnSearch.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
-        jBtnSearch.setText("ค้นหา");
-        jPanel1.add(jBtnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
+        jPanel1.add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 700, 60));
 
@@ -154,13 +223,9 @@ public class ListSO_view extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxActionPerformed
-
-    private void jTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldActionPerformed
+    private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
+        searchingSO();
+    }//GEN-LAST:event_searchBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -198,13 +263,13 @@ public class ListSO_view extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBtnSearch;
-    private javax.swing.JComboBox jComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPanel;
-    private javax.swing.JTextField jTextField;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JComboBox searchBox;
+    private javax.swing.JButton searchBtn;
+    private javax.swing.JTextField searchText;
     // End of variables declaration//GEN-END:variables
 }

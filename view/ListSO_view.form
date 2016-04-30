@@ -43,52 +43,51 @@
         <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JComboBox" name="jComboBox">
+        <Component class="javax.swing.JComboBox" name="searchBox">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Angsana New" size="20" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
+              <StringArray count="7">
                 <StringItem index="0" value="&#xe40;&#xe25;&#xe02;&#xe17;&#xe35;&#xe48;&#xe43;&#xe1a;&#xe2a;&#xe31;&#xe48;&#xe07;&#xe02;&#xe32;&#xe22;"/>
                 <StringItem index="1" value="&#xe27;&#xe31;&#xe19;&#xe17;&#xe35;&#xe48;&#xe40;&#xe2d;&#xe01;&#xe2a;&#xe32;&#xe23;&#xe43;&#xe1a;&#xe2a;&#xe31;&#xe48;&#xe07;&#xe02;&#xe32;&#xe22;"/>
                 <StringItem index="2" value="&#xe23;&#xe2b;&#xe31;&#xe2a;&#xe25;&#xe39;&#xe01;&#xe04;&#xe49;&#xe32;"/>
                 <StringItem index="3" value="&#xe0a;&#xe37;&#xe48;&#xe2d;&#xe25;&#xe39;&#xe01;&#xe04;&#xe49;&#xe32;"/>
                 <StringItem index="4" value="&#xe0a;&#xe37;&#xe48;&#xe2d;&#xe1a;&#xe23;&#xe34;&#xe29;&#xe31;&#xe17;"/>
+                <StringItem index="5" value="&#xe43;&#xe1a;&#xe2a;&#xe31;&#xe48;&#xe07;&#xe02;&#xe32;&#xe22;&#xe1b;&#xe01;&#xe15;&#xe34;"/>
+                <StringItem index="6" value="&#xe43;&#xe1a;&#xe2a;&#xe31;&#xe48;&#xe07;&#xe02;&#xe32;&#xe22;&#xe1c;&#xe34;&#xe14;&#xe1b;&#xe01;&#xe15;&#xe34;"/>
               </StringArray>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxActionPerformed"/>
-          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="20" y="10" width="170" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField">
+        <Component class="javax.swing.JTextField" name="searchText">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Angsana New" size="20" style="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldActionPerformed"/>
-          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="200" y="10" width="200" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="jBtnSearch">
+        <Component class="javax.swing.JButton" name="searchBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Angsana New" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#xe04;&#xe49;&#xe19;&#xe2b;&#xe32;"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="searchBtnMouseClicked"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="410" y="10" width="-1" height="-1"/>

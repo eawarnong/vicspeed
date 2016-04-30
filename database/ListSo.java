@@ -9,8 +9,8 @@ public class ListSo extends ConnectDB {
         super();
     }
     
-    private ArrayList<HashMap> getAllSaleOrders() {
-        String sql = "SELECT SOID FROM VICSPEED_SALEORDER";
+    public ArrayList<HashMap> getAllSaleOrders() {
+        String sql = "SELECT SOID FROM VICSPEED_SALEORDER ORDER BY SOID";
         return db.queryRows(sql);
     }
 
@@ -20,9 +20,7 @@ public class ListSo extends ConnectDB {
         ArrayList<HashMap> normalSOs = new ArrayList();
         
         for(HashMap SO : SOs) {
-            if(problemSOs.contains(SO)) {
-                continue;
-            } else {
+            if(!problemSOs.contains(SO)) {
                 normalSOs.add(SO);
             }
         }
@@ -39,6 +37,36 @@ public class ListSo extends ConnectDB {
                 +                 " AND SOID = SO.SOID"
                 +                 " GROUP BY PRODUCTID)"
                 + " ORDER BY SO.SOID";
+        return db.queryRows(sql);
+    }
+    
+    public ArrayList<HashMap> getSO(int soid) {
+        String sql = "SELECT SOID FROM VICSPEED_SALEORDER WHERE SOID = " + soid;
+        return db.queryRows(sql);
+    }
+    
+    public ArrayList<HashMap> getDateSO(String date) {
+        String sql = "SELECT SOID FROM VICSPEED_SALEORDER WHERE DATE = '" + date + "' ";
+        return db.queryRows(sql);
+    }
+    
+    public ArrayList<HashMap> getCusIdSO(int cusid) {
+        String sql = "SELECT SOID FROM VICSPEED_SALEORDER WHERE CUSTOMERID = " + cusid;
+        return db.queryRows(sql);
+    }
+    
+    public ArrayList<HashMap> getCusNameSO(String cusName) {
+        String sql = "SELECT SOID FROM VICSPEED_SALEORDER AS SO, VICSPEED_CUSTOMER AS CUS"
+                + " WHERE (FIRSTNAME LIKE '%" + cusName + "%'"
+                + " OR LASTNAME LIKE '%" + cusName + "%')"
+                + " AND SO.CUSTOMERID = CUS.CUSTOMERID";
+        return db.queryRows(sql);
+    }
+    
+    public ArrayList<HashMap> getCompanySO(String companyName) {
+        String sql = "SELECT SOID FROM VICSPEED_SALEORDER AS SO, VICSPEED_CUSTOMER AS CUS"
+                + " WHERE COMPANYNAME LIKE '%" + companyName + "%'"
+                + " AND SO.CUSTOMERID = CUS.CUSTOMERID";
         return db.queryRows(sql);
     }
 
