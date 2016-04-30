@@ -75,10 +75,28 @@ public class SaleOrder extends ConnectDB {
         return String.valueOf(sname.get("FIRSTNAME")) + " " + String.valueOf(sname.get("LASTNAME"));
     }
 
-    public ArrayList<HashMap> getProductsID() {
+    private ArrayList<HashMap> getProductsID() {
         String sql = "SELECT PRODUCTID FROM VICSPEED_PRODUCTSO WHERE SOID = " + soID;
         ArrayList<HashMap> proid = db.queryRows(sql);
         return db.queryRows(sql);
+    }
+    
+    public ArrayList<HashMap> getProducts() {
+        ArrayList<HashMap> proids = getProductsID();
+        ArrayList<HashMap> products = new ArrayList<HashMap>();
+        for(HashMap proid : proids) {
+            Product product = new Product();
+            HashMap productHashMap = new HashMap();
+            //product.setProductID(Integer.parseInt(String.valueOf(proid.get("PRODUCTID"))));
+            productHashMap.put("PRODUCTID", product.getProductID());
+            productHashMap.put("PRODUCTNAME", product.getProductName());
+            productHashMap.put("TYPEOFPRODUCT", product.getProductType());
+            productHashMap.put("AMOUNT", product.getProductAmount());
+            productHashMap.put("PRICE", product.getProductPrice());
+            productHashMap.put("TOTALPRICE", product.getTotalPrice());
+            products.add(productHashMap);
+        }
+        return products;
     }
 
 }
@@ -98,7 +116,6 @@ class Test {
         System.out.println(s.getDiscount());
         System.out.println(s.getTax());
         System.out.println(s.getSaleName());
-        System.out.println(s.getProductsID());
         s.disconnect();
     }
 }
