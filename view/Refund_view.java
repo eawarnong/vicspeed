@@ -156,7 +156,7 @@ public class Refund_view extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 670, 110));
 
-        soTable.setFont(new java.awt.Font("Angsana New", 0, 14)); // NOI18N
+        soTable.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         soTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

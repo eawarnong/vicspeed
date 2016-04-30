@@ -151,7 +151,7 @@ public class SaleOrder_view extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 670, 120));
 
-        jTable1.setFont(new java.awt.Font("Angsana New", 0, 14)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
