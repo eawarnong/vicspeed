@@ -20,7 +20,6 @@ public class Invoice_view extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -48,13 +47,11 @@ public class Invoice_view extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Invoice.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, 30));
 
         jButton2.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jButton2.setText("เสร็จสิ้น");
@@ -158,6 +155,9 @@ public class Invoice_view extends javax.swing.JFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/vicspeedBG.png"))); // NOI18N
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/vicspeedBG.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
