@@ -1,10 +1,10 @@
 package database;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.SortedMap;
 
-public class Invoice extends SaleOrder {
+import static database.ConnectDB.db;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class Invoice extends ConnectDB{
 
 	private int invoiceID;
         
@@ -15,14 +15,9 @@ public class Invoice extends SaleOrder {
         public void setInvoiceID(int invoiceID){
             this.invoiceID = invoiceID;
         }
-        
-        
-        
+
 	public int getInvoiceID() {
-            String sql = "SELECT INVOICEID FROM VICSPEED_INVOICE WHERE INVOICEID = " + invoiceID;
-            HashMap invid = db.queryRow(sql);
-            return Integer.parseInt(String.valueOf(invid.get("INVOICEID")));
-		
+            return invoiceID;	
 	}
 
 	public String getDateInvoice() {
@@ -51,12 +46,13 @@ public class Invoice extends SaleOrder {
 	}
 
 }
-class test{
+
+class testInv{
     public static void main(String[]args){
         Invoice i = new Invoice();
+        i.connect();
         i.setInvoiceID(80001);
-        
-        
+
         System.out.println(i.getInvoiceID());
         System.out.println(i.getDateInvoice());
         System.out.println(i.getApproveID());
