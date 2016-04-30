@@ -65,7 +65,7 @@ public class SaleOrder extends ConnectDB {
     }
 
     public String getCustomerCompany() {
-        String sql = "SELECT COMPANYNAME FROM VICSPEED_CUSTOMER";
+        String sql = "SELECT COMPANYNAME FROM VICSPEED_CUSTOMER WHERE SOID " + soID;
         HashMap custcomp = db.queryRow(sql);
         return String.valueOf(custcomp.get("COMPANYNAME"));
     }
@@ -123,6 +123,7 @@ class Test {
         System.out.println(s.getDiscount());
         System.out.println(s.getTax());
         System.out.println(s.getSaleName());
+        System.out.println(s.getInvoiceIDs());
         s.disconnect();
     }
 }
