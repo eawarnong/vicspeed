@@ -2,6 +2,9 @@
 package view;
 
 import database.SaleOrder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.table.DefaultTableModel;
 
 public class Refund_view extends javax.swing.JFrame {
 
@@ -9,6 +12,8 @@ public class Refund_view extends javax.swing.JFrame {
      * Creates new form Refund_view
      */
     private int soid;
+    private DefaultTableModel model;
+    private ArrayList<HashMap> refundInfo;
     
     public Refund_view(int soid) {
         initComponents();
@@ -162,7 +167,7 @@ public class Refund_view extends javax.swing.JFrame {
 
             },
             new String [] {
-                " No.", "รหัสสินค้า", "ชื่อสินค้า", "จำนวน", "ราคา/หน่วย", "ส่วนลด", "จำนวนเงิน"
+                " No.", "รหัสสินค้า", "ชื่อสินค้า", "จำนวน", "หน่วย", "ราคา/หน่วย", "จำนวนเงิน"
             }
         ));
         jScrollPane1.setViewportView(soTable);
@@ -175,7 +180,7 @@ public class Refund_view extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No.", "รหัสสินค้า", "ชื่อสินค้า", "จำนวน", "ราคา/หน่วย", "ส่วนลด", "จำนวนเงิน"
+                "No.", "รหัสสินค้า", "ชื่อสินค้า", "จำนวน", "หน่วย", "ราคา/หน่วย", "จำนวนเงิน"
             }
         ));
         jScrollPane3.setViewportView(invoiceTable);
@@ -225,6 +230,25 @@ public class Refund_view extends javax.swing.JFrame {
  
     }
     
+    public void refundTable(){
+        
+        model = (DefaultTableModel)soTable.getModel();
+        model.setRowCount(0);
+        int line = 0;
+        
+        for(HashMap info : refundInfo){
+            model.addRow(new Object[0]);
+            model.setValueAt(info.get("CarModel"), line, 0);
+            model.setValueAt(info.get("PassengerSeats"), line, 1);
+            model.setValueAt(info.get("Distance"), line, 2);
+            model.setValueAt(info.get("Fuel"), line, 3);
+            model.setValueAt(info.get("Available"), line, 4);
+            model.setValueAt(info.get("CustomerName"), line, 5);
+            model.setValueAt(info.get("ExpiredDate"), line, 6);
+            line++;
+            
+        }
+    }
     /**
      * @param args the command line arguments
      */

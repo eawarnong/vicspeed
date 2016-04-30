@@ -157,7 +157,7 @@ public class SaleOrder_view extends javax.swing.JFrame {
 
             },
             new String [] {
-                " No.", "รหัสสินค้า", "ชื่อสินค้า", "จำนวน", "ราคา/หน่วย", "ส่วนลด", "จำนวนเงิน"
+                " No.", "รหัสสินค้า", "ชื่อสินค้า", "จำนวน", "หน่วย", "ราคา/หน่วย", "จำนวนเงิน"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
