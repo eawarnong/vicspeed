@@ -8,7 +8,7 @@ public class ConnectDB {
     protected static CSDbDelegate db;
     
     public ConnectDB() {
-        connect();
+
     }
     
     public static void connect() {
