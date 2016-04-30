@@ -10,12 +10,11 @@ public class Refund_view extends javax.swing.JFrame {
      */
     private int soid;
     
-    public Refund_view() {
+    public Refund_view(int soid) {
         initComponents();
-                
-        SaleOrder s = new SaleOrder();
-        s.setSoID(soid);
-       
+        
+        this.soid = soid;
+
         showData();
         //super.setSize(800,600);
     }
@@ -206,10 +205,12 @@ public class Refund_view extends javax.swing.JFrame {
 
     private void showData() {
         SaleOrder s = new SaleOrder();
+        s.connect();
+        s.setSoID(soid);
         
-        customerID.setText(String.valueOf(s.getCustomerID()));
+        customerID.setText(s.getCustomerID()+"");
         customerName.setText(s.getCustomerName());
-        SOid.setText(String.valueOf(soid));
+        SOid.setText(soid+"");
         companyName.setText(s.getCustomerCompany());
         
         /*invoiceList.setModel(new javax.swing.AbstractListModel() {
@@ -259,7 +260,7 @@ public class Refund_view extends javax.swing.JFrame {
         /* Create and display the form */ //JAJANAJA
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Refund_view().setVisible(true);
+                //new Refund_view().setVisible(true);
             }
         });
     }
