@@ -43,20 +43,20 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Angsana New" size="18" style="0"/>
+          <Font name="Angsana New" size="20" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="&#xe40;&#xe2a;&#xe23;&#xe47;&#xe08;&#xe2a;&#xe34;&#xe49;&#xe19;"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="330" y="510" width="-1" height="25"/>
+          <AbsoluteConstraints x="360" y="540" width="-1" height="25"/>
         </Constraint>
       </Constraints>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel2">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="50" y="370" width="670" height="140"/>
+          <AbsoluteConstraints x="50" y="390" width="670" height="140"/>
         </Constraint>
       </Constraints>
 
@@ -73,7 +73,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="180" y="100" width="-1" height="-1"/>
+              <AbsoluteConstraints x="230" y="100" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -86,7 +86,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="180" y="10" width="-1" height="-1"/>
+              <AbsoluteConstraints x="230" y="10" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -99,14 +99,14 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="180" y="40" width="-1" height="-1"/>
+              <AbsoluteConstraints x="230" y="40" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="totalSO">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -118,7 +118,7 @@
         <Component class="javax.swing.JLabel" name="totalInvoice">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -130,7 +130,7 @@
         <Component class="javax.swing.JLabel" name="refund">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -148,14 +148,14 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="180" y="70" width="-1" height="-1"/>
+              <AbsoluteConstraints x="230" y="70" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="refund1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -239,7 +239,7 @@
         <Component class="javax.swing.JLabel" name="SOid">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -251,7 +251,7 @@
         <Component class="javax.swing.JLabel" name="amountInvoice">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -275,7 +275,7 @@
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -287,7 +287,7 @@
         <Component class="javax.swing.JLabel" name="FirstName">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -299,7 +299,7 @@
         <Component class="javax.swing.JLabel" name="jLabel17">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -361,7 +361,7 @@
         <Component class="javax.swing.JLabel" name="amountInvoice2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="20" style="0"/>
+              <Font name="Angsana New" size="20" style="1"/>
             </Property>
           </Properties>
           <Constraints>
@@ -378,7 +378,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="50" y="230" width="670" height="130"/>
+          <AbsoluteConstraints x="50" y="230" width="670" height="140"/>
         </Constraint>
       </Constraints>
 
@@ -387,16 +387,16 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Angsana New" size="14" style="0"/>
+              <Font name="Angsana New" size="20" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="7">
+              <Table columnCount="7" rowCount="0">
                 <Column editable="true" title=" No." type="java.lang.Object"/>
                 <Column editable="true" title="&#xe23;&#xe2b;&#xe31;&#xe2a;&#xe2a;&#xe34;&#xe19;&#xe04;&#xe49;&#xe32;" type="java.lang.Object"/>
                 <Column editable="true" title="&#xe0a;&#xe37;&#xe48;&#xe2d;&#xe2a;&#xe34;&#xe19;&#xe04;&#xe49;&#xe32;" type="java.lang.Object"/>
                 <Column editable="true" title="&#xe08;&#xe33;&#xe19;&#xe27;&#xe19;" type="java.lang.Object"/>
+                <Column editable="true" title="&#xe2b;&#xe19;&#xe48;&#xe27;&#xe22;" type="java.lang.Object"/>
                 <Column editable="true" title="&#xe23;&#xe32;&#xe04;&#xe32;/&#xe2b;&#xe19;&#xe48;&#xe27;&#xe22;" type="java.lang.Object"/>
-                <Column editable="true" title="&#xe2a;&#xe48;&#xe27;&#xe19;&#xe25;&#xe14;" type="java.lang.Object"/>
                 <Column editable="true" title="&#xe08;&#xe33;&#xe19;&#xe27;&#xe19;&#xe40;&#xe07;&#xe34;&#xe19;" type="java.lang.Object"/>
               </Table>
             </Property>
