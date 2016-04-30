@@ -138,7 +138,6 @@ public class ListSO_view extends javax.swing.JFrame {
                 refundBtn.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        System.out.println(soid);
                         new Refund_view(soid).setVisible(true);
                     }
                 });

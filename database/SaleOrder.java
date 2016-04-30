@@ -75,15 +75,20 @@ public class SaleOrder extends ConnectDB {
         HashMap sname = db.queryRow(sql);
         return String.valueOf(sname.get("FIRSTNAME")) + " " + String.valueOf(sname.get("LASTNAME"));
     }
+    
+    public ArrayList<HashMap> getInvoiceIDs() {
+        String sql = "SELECT INVOICEID FROM VICSPEED_INVOICE WHERE SOID = " + soID;
+        return db.queryRows(sql);
+    }
 
-    private ArrayList<HashMap> getProductsID() {
+    private ArrayList<HashMap> getProductIDs() {
         String sql = "SELECT PRODUCTID FROM VICSPEED_PRODUCTSO WHERE SOID = " + soID;
         ArrayList<HashMap> proid = db.queryRows(sql);
         return db.queryRows(sql);
     }
     
     public ArrayList<HashMap> getProducts() {
-        ArrayList<HashMap> proids = getProductsID();
+        ArrayList<HashMap> proids = getProductIDs();
         ArrayList<HashMap> products = new ArrayList<HashMap>();
         for(HashMap proid : proids) {
             Product product = new Product();
