@@ -234,6 +234,11 @@ public class Refund_view extends javax.swing.JFrame {
         customerName.setText(so.getCustomerName());
         SOid.setText(soid+"");
         companyName.setText(so.getCustomerCompany());
+        
+        ArrayList<HashMap> invIDs = saleOrder.getInvoiceIDs();
+        for(HashMap invID : invIDs) {
+            invCombo.addItem(invID.get("INVOICEID"));
+        }
        
     }
     
