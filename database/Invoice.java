@@ -117,12 +117,12 @@ public class Invoice extends ConnectDB {
 
 }
 
-class testInv {
-
-    public static void main(String[] args) {
-        Invoice i = new Invoice();
-        i.connect();
-        i.setInvoiceID(80001);
+//class testInv {
+//
+//    public static void main(String[] args) {
+//        Invoice i = new Invoice();
+//        i.connect();
+//        i.setInvoiceID(80001);
 //
 //        System.out.println(i.getInvoiceID());
 //        System.out.println(i.getDateInvoice());
@@ -134,8 +134,8 @@ class testInv {
 //        System.out.println(i.getCustomerName());
 //        System.out.println(i.getCompanyName());
 //        
-        System.out.println(i.getProducts());
+//        System.out.println(i.getProducts());
 //
-        i.disconnect();
-    }
-}
+//        i.disconnect();
+//    }
+//}

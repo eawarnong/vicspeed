@@ -47,10 +47,10 @@ public class Product extends ConnectDB{
             return String.valueOf(pamount.get("AMOUNT"));
 	}
 
-	public String getProductPrice() {
+	public Double getProductPrice() {
             String sql = "SELECT PRICE FROM VICSPEED_STOCK WHERE PRODUCTID = " + productID;
             HashMap pprice = db.queryRow(sql);
-            return String.valueOf(pprice.get("PRICE"));
+            return Double.parseDouble(String.valueOf(pprice.get("PRICE")));
 	}
         
         public Double getTotalPriceInvoice() {
@@ -64,7 +64,7 @@ public class Product extends ConnectDB{
             return Double.parseDouble(String.valueOf(totalp.get("TOTALPRICE")));
 	}
 
-	public String getTotalPriceSO() {
+	public Double getTotalPriceSO() {
             String sql = "SELECT SUM(P_SO.AMOUNT * ST.PRICE) AS TOTALPRICE"
                     + " FROM VICSPEED_STOCK AS ST JOIN VICSPEED_PRODUCTSO AS P_SO"
                     + " ON P_SO.PRODUCTID = ST.PRODUCTID"
@@ -72,18 +72,18 @@ public class Product extends ConnectDB{
                     + " WHERE ST.PRODUCTID = " + productID + " AND P_SO.SOID = " + docID
                     + " GROUP BY ST.PRODUCTID";
             HashMap totalp = db.queryRow(sql);
-            return String.valueOf(totalp.get("TOTALPRICE"));
+            return Double.parseDouble(String.valueOf(totalp.get("TOTALPRICE")));
 	}
         
 }
 
-class TestPro {
-    public static void main(String[] args) {
-        Product p = new Product();
-        p.connect();
-        p.setProductID(5001);
-        System.out.println(p.getProductID());
-        System.out.println(p.getProductType());
-        p.disconnect();
-    }
-}
+//class TestPro {
+//    public static void main(String[] args) {
+//        Product p = new Product();
+//        p.connect();
+//        p.setProductID(5001);
+//        System.out.println(p.getProductID());
+//        System.out.println(p.getProductType());
+//        p.disconnect();
+//    }
+//}

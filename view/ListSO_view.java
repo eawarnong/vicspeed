@@ -106,12 +106,12 @@ public class ListSO_view extends javax.swing.JFrame {
             int soid = Integer.parseInt(String.valueOf(list.get("SOID")));
             PnlLine pnlLine = new PnlLine();
             JPanel pnlButton = new JPanel();
-            JLabel lbl = new JLabel();
+            JLabel lblSOID = new JLabel();
 
-            lbl.setText(soid + "");
-            lbl.setFont(new java.awt.Font("Angsana New", 0, 20));
-            lbl.setBorder(new EmptyBorder(0, 5, 0, 0));
-            pnlLine.add(lbl, BorderLayout.WEST);
+            lblSOID.setText(soid + "");
+            lblSOID.setFont(new java.awt.Font("Angsana New", 0, 20));
+            lblSOID.setBorder(new EmptyBorder(0, 5, 0, 0));
+            pnlLine.add(lblSOID, BorderLayout.WEST);
 
             pnlButton.setLayout(new BorderLayout());
 

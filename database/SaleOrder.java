@@ -145,25 +145,25 @@ public class SaleOrder extends ConnectDB {
 
 }
 
-class Test {
-
-    public static void main(String[] args) {
-        SaleOrder s = new SaleOrder();
-        s.connect();
-        s.setSoID(40001);
-
-        System.out.println(s.getSoID());
-        System.out.println(s.getDateSo());
-        System.out.println(s.getDeadline());
-        System.out.println(s.getCustomerID());
-        System.out.println(s.getCustomerName());
-        System.out.println(s.getCustomerCompany());
-        System.out.println(s.getDiscount());
-        System.out.println(s.getTax());
-        System.out.println(s.getSaleName());
-        System.out.println(s.getInvoiceIDs());
-        System.out.println(s.getSumTotalPriceSO());
-        System.out.println(s.getSumTotalPriceInvoice());
-        s.disconnect();
-    }
-}
+//class Test {
+//
+//    public static void main(String[] args) {
+//        SaleOrder s = new SaleOrder();
+//        s.connect();
+//        s.setSoID(40001);
+//
+//        System.out.println(s.getSoID());
+//        System.out.println(s.getDateSo());
+//        System.out.println(s.getDeadline());
+//        System.out.println(s.getCustomerID());
+//        System.out.println(s.getCustomerName());
+//        System.out.println(s.getCustomerCompany());
+//        System.out.println(s.getDiscount());
+//        System.out.println(s.getTax());
+//        System.out.println(s.getSaleName());
+//        System.out.println(s.getInvoiceIDs());
+//        System.out.println(s.getSumTotalPriceSO());
+//        System.out.println(s.getSumTotalPriceInvoice());
+//        s.disconnect();
+//    }
+//}

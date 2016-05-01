@@ -72,23 +72,23 @@ public class ListSo extends ConnectDB {
 
 }
 
-class TestList {
-
-    public static void main(String[] args) {
-        ListSo l = new ListSo();
-        ArrayList<HashMap> a = new ArrayList<>();
-        
-        System.out.println("Normal");
-         a = l.getNormalSoIDs();
-         System.out.println(a);
-
-         
-         System.out.println();
-         
-         System.out.println("Problem");
-         a = l.getProblemSoIDs();
-         System.out.println(a);
-         
-        l.disconnect();
-    }
-}
+//class TestList {
+//
+//    public static void main(String[] args) {
+//        ListSo l = new ListSo();
+//        ArrayList<HashMap> a = new ArrayList<>();
+//        
+//        System.out.println("Normal");
+//         a = l.getNormalSoIDs();
+//         System.out.println(a);
+//
+//         
+//         System.out.println();
+//         
+//         System.out.println("Problem");
+//         a = l.getProblemSoIDs();
+//         System.out.println(a);
+//         
+//        l.disconnect();
+//    }
+//}
