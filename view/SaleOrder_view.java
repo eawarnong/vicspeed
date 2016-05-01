@@ -237,6 +237,7 @@ public class SaleOrder_view extends javax.swing.JFrame {
 
         jPanel1.add(invCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, 90, -1));
 
+        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/searchButton.png"))); // NOI18N
         searchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchBtnMouseClicked(evt);
