@@ -1,14 +1,23 @@
 
 package view;
+import database.SaleOrder;
 
 public class SaleOrder_view extends javax.swing.JFrame {
+    
+    SaleOrder saleOrder;
 
     /**
      * Creates new form Refund_view
      */
     public SaleOrder_view() {
+        saleOrder = new SaleOrder();
+        
         initComponents();
         //super.setSize(800,600);
+    }
+    
+    public void checkTable() {
+        
     }
 
     /**
