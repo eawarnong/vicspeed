@@ -62,8 +62,6 @@ public class Refund_view extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        invoiceList = new javax.swing.JList();
         jLabel11 = new javax.swing.JLabel();
         SOid = new javax.swing.JLabel();
         companyName = new javax.swing.JLabel();
@@ -71,6 +69,8 @@ public class Refund_view extends javax.swing.JFrame {
         customerID = new javax.swing.JLabel();
         customerName = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        invCombo = new javax.swing.JComboBox();
+        searchBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         soTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -136,16 +136,6 @@ public class Refund_view extends javax.swing.JFrame {
         jLabel4.setText("ชื่อบริษัท");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
 
-        invoiceList.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        invoiceList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(invoiceList);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 160, 50));
-
         jLabel11.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel11.setText("รหัสลูกค้า");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
@@ -172,6 +162,15 @@ public class Refund_view extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 110, 20));
+
+        jPanel1.add(invCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 90, -1));
+
+        searchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchBtnMouseClicked(evt);
+            }
+        });
+        jPanel1.add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 30, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 670, 110));
 
@@ -216,6 +215,15 @@ public class Refund_view extends javax.swing.JFrame {
         // TODO add your handling code here:
         //customerID.setText("text");
     }//GEN-LAST:event_customerIDComponentShown
+
+    private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
+        saleOrder.connect();
+
+        int invID = Integer.parseInt(String.valueOf(invCombo.getSelectedItem()));
+        new Invoice_view(invID).setVisible(true);
+
+        saleOrder.disconnect();
+    }//GEN-LAST:event_searchBtnMouseClicked
 
     private void addInfo() {
         
@@ -293,7 +301,7 @@ public class Refund_view extends javax.swing.JFrame {
     private javax.swing.JLabel companyName;
     private javax.swing.JLabel customerID;
     private javax.swing.JLabel customerName;
-    private javax.swing.JList invoiceList;
+    private javax.swing.JComboBox invCombo;
     private javax.swing.JTable invoiceTable;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -312,9 +320,9 @@ public class Refund_view extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel refund;
+    private javax.swing.JButton searchBtn;
     private javax.swing.JTable soTable;
     private javax.swing.JLabel totalInvoice;
     private javax.swing.JLabel totalSO;
