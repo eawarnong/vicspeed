@@ -68,41 +68,41 @@ public class SaleOrder_view extends javax.swing.JFrame {
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/SO.png"))); // NOI18N
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 90, 30));
 
-        jButton1.setFont(new java.awt.Font("Angsana New", 0, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jButton1.setText("เสร็จสิ้น");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 510, -1, 25));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 540, -1, 25));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel6.setText("รวมทั้งสิ้น");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel7.setText("จำนวนเงินรวม");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel8.setText("ส่วนลดการค้า");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, -1, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
-        totalSO.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        totalSO.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel2.add(totalSO, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 110, 20));
 
-        totalInvoice.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        totalInvoice.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel2.add(totalInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 110, 20));
 
-        refund.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        refund.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel2.add(refund, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 110, 20));
 
         jLabel14.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel14.setText("อัตราภาษี(%)");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, -1));
 
-        refund1.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        refund1.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel2.add(refund1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 110, 20));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 670, 140));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 670, 140));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -123,22 +123,22 @@ public class SaleOrder_view extends javax.swing.JFrame {
         jLabel11.setText("รหัสลูกค้า");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
-        SOid.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        SOid.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel1.add(SOid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 110, 20));
 
-        amountInvoice.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        amountInvoice.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel1.add(amountInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 110, 20));
 
         LastName.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jPanel1.add(LastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 110, 20));
 
-        jLabel15.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 110, 20));
 
-        FirstName.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        FirstName.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel1.add(FirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 110, 20));
 
-        jLabel17.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 110, 20));
 
         jLabel13.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
@@ -155,23 +155,24 @@ public class SaleOrder_view extends javax.swing.JFrame {
         amountInvoice1.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jPanel1.add(amountInvoice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 110, 20));
 
+        amountInvoice2.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         amountInvoice2.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jPanel1.add(amountInvoice2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 110, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 670, 120));
 
-        jTable1.setFont(new java.awt.Font("Angsana New", 0, 14)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                " No.", "รหัสสินค้า", "ชื่อสินค้า", "จำนวน", "ราคา/หน่วย", "ส่วนลด", "จำนวนเงิน"
+                " No.", "รหัสสินค้า", "ชื่อสินค้า", "จำนวน", "หน่วย", "ราคา/หน่วย", "จำนวนเงิน"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 670, 130));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 670, 140));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));

@@ -10,8 +10,8 @@ import database.ListSo;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JButton;
@@ -36,11 +36,11 @@ public class ListSO_view extends javax.swing.JFrame {
 
         initComponents();
         addListSOs(list.getAllSaleOrders()); //default listSOs
- 
+
         list.disconnect();
     }
 
-    public void searchingSO() {
+    private void searchingSO() {
         list.connect();
         String selectItem = String.valueOf(searchBox.getSelectedItem());
         String text = searchText.getText();
@@ -69,11 +69,9 @@ public class ListSO_view extends javax.swing.JFrame {
                 addListSOs(list.getCompanySO(text));
                 break;
             case "ใบสั่งขายปกติ":
-                searchText.setText("");
                 addListSOs(list.getNormalSoIDs());
                 break;
             case "ใบสั่งขายผิดปกติ":
-                searchText.setText("");
                 addListSOs(list.getProblemSoIDs());
                 break;
             default:
@@ -103,7 +101,7 @@ public class ListSO_view extends javax.swing.JFrame {
         return false;
     }
 
-    public void addListSOs(ArrayList<HashMap> lists) {
+    private void addListSOs(ArrayList<HashMap> lists) {
         for (HashMap list : lists) {
             int soid = Integer.parseInt(String.valueOf(list.get("SOID")));
             PnlLine pnlLine = new PnlLine();
@@ -116,25 +114,52 @@ public class ListSO_view extends javax.swing.JFrame {
             pnlLine.add(lbl, BorderLayout.WEST);
 
             pnlButton.setLayout(new BorderLayout());
-            //pnlButton.add(new SOButton(), BorderLayout.EAST); // Button for go to Sale Order page
-            //pnlLine.add(pnlButton, BorderLayout.EAST);
+
+            JButton SoBtn = new JButton();
+            SoBtn.setPreferredSize(new Dimension(40, 40));
+            SoBtn.setToolTipText("Sale Order");
+            SoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/soButton.png")));
+            SoBtn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    //new SaleOrder_view(soid).setVisible(true);
+                }
+            });
+            
+            pnlButton.add(SoBtn, BorderLayout.EAST);
 
             if (checkProblemSOs(soid)) {
-                pnlLine.setColor(Color.RED);
+                pnlLine.setColor(new Color(255, 0, 30));
+                //set refund button for problem SOs
+                JButton refundBtn = new JButton();
+                refundBtn.setPreferredSize(new Dimension(40, 40));
+                refundBtn.setToolTipText("Refund");
+                refundBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/refundButton.png")));
+                refundBtn.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        new Refund_view(soid).setVisible(true);
+                    }
+                });
+                pnlButton.add(refundBtn, BorderLayout.WEST);
+                pnlButton.setBackground(new Color(255, 0, 30));
             } else {
                 pnlLine.setColor(Color.WHITE);
+                pnlButton.setBackground(Color.WHITE);
             }
+            
+            pnlLine.add(pnlButton, BorderLayout.EAST);
             mainPanel.add(pnlLine);
         }
     }
 
     class PnlLine extends JPanel {
 
-        public PnlLine() {
+        private PnlLine() {
             init();
         }
 
-        public void init() {
+        private void init() {
             // set proporty of pnlLine
             setLayout(new BorderLayout());
             setBorder(new javax.swing.border.LineBorder(Color.BLACK, 1, false));
@@ -143,7 +168,7 @@ public class ListSO_view extends javax.swing.JFrame {
             setMaximumSize(new Dimension(mainPanel.getWidth() - 15, 40));
         }
 
-        public void setColor(Color color) {
+        private void setColor(Color color) {
             setBackground(color);
         }
 
@@ -168,6 +193,8 @@ public class ListSO_view extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -222,33 +249,36 @@ public class ListSO_view extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBtnMouseClicked
 
     private void searchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBoxActionPerformed
-        list.connect();
-        String selectItem = String.valueOf(searchBox.getSelectedItem());
+         String selectItem = String.valueOf(searchBox.getSelectedItem());
+        searchText.setText("");
         switch (selectItem) {
             case "ใบสั่งขายปกติ":
+                list.connect();
                 mainPanel.removeAll();
                 mainPanel.revalidate();
                 searchText.setText("");
                 addListSOs(list.getNormalSoIDs());
                 mainPanel.repaint();
+                list.disconnect();
                 break;
             case "ใบสั่งขายผิดปกติ":
+                list.connect();
                 mainPanel.removeAll();
                 mainPanel.revalidate();
                 searchText.setText("");
                 addListSOs(list.getProblemSoIDs());
                 mainPanel.repaint();
+                list.disconnect();
                 break;
             case "วันที่เอกสารใบสั่งขาย":
                 searchText.setText("yyyy-mm-dd");
-                searchText.setForeground(new Color(153,153,153));
+                searchText.setForeground(new Color(153, 153, 153));
         }
-        list.disconnect();
     }//GEN-LAST:event_searchBoxActionPerformed
 
     private void searchTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchTextMouseClicked
         searchText.setForeground(Color.BLACK);
-        if(searchText.getText().equals("yyyy-mm-dd")) {
+        if (searchText.getText().equals("yyyy-mm-dd")) {
             searchText.setText("");
         }
     }//GEN-LAST:event_searchTextMouseClicked

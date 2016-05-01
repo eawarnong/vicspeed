@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class SaleOrder extends ConnectDB {
 
     private int soID;
-
+    
     public SaleOrder() {
         super();
     }
@@ -65,7 +65,10 @@ public class SaleOrder extends ConnectDB {
     }
 
     public String getCustomerCompany() {
-        String sql = "SELECT COMPANYNAME FROM VICSPEED_CUSTOMER";
+        String sql = "SELECT COMPANYNAME"
+                + " FROM VICSPEED_CUSTOMER AS CUS, VICSPEED_SALEORDER AS SO"
+                + " WHERE SOID = " + soID
+                + " AND CUS.CUSTOMERID = SO.CUSTOMERID";
         HashMap custcomp = db.queryRow(sql);
         return String.valueOf(custcomp.get("COMPANYNAME"));
     }
@@ -75,15 +78,20 @@ public class SaleOrder extends ConnectDB {
         HashMap sname = db.queryRow(sql);
         return String.valueOf(sname.get("FIRSTNAME")) + " " + String.valueOf(sname.get("LASTNAME"));
     }
+    
+    public ArrayList<HashMap> getInvoiceIDs() {
+        String sql = "SELECT INVOICEID FROM VICSPEED_INVOICE WHERE SOID = " + soID;
+        return db.queryRows(sql);
+    }
 
-    private ArrayList<HashMap> getProductsID() {
+    private ArrayList<HashMap> getProductIDs() {
         String sql = "SELECT PRODUCTID FROM VICSPEED_PRODUCTSO WHERE SOID = " + soID;
         ArrayList<HashMap> proid = db.queryRows(sql);
         return db.queryRows(sql);
     }
     
     public ArrayList<HashMap> getProducts() {
-        ArrayList<HashMap> proids = getProductsID();
+        ArrayList<HashMap> proids = getProductIDs();
         ArrayList<HashMap> products = new ArrayList<HashMap>();
         for(HashMap proid : proids) {
             Product product = new Product();
@@ -118,6 +126,7 @@ class Test {
         System.out.println(s.getDiscount());
         System.out.println(s.getTax());
         System.out.println(s.getSaleName());
+        System.out.println(s.getInvoiceIDs());
         s.disconnect();
     }
 }
