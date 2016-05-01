@@ -131,6 +131,17 @@ public class SaleOrder extends ConnectDB {
         }
         return sumTotalPrice;
     }
+    
+    public Double getSumDiscount() {
+        ArrayList<HashMap> invids = getInvoiceIDs();
+        Double sumDiscount = 0.0;
+        for(HashMap invid : invids) {
+            Invoice inv = new Invoice();
+            inv.setInvoiceID(Integer.parseInt(String.valueOf(invid.get("INVOICEID"))));
+            sumDiscount += inv.getDiscount();
+        }
+        return sumDiscount;
+    }
 
 }
 
