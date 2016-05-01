@@ -13,7 +13,7 @@ public class Refund_view extends javax.swing.JFrame {
      * Creates new form Refund_view
      */
     private int soid;
-    private int invID;
+    //private int invID;
     private DefaultTableModel model;
     private SaleOrder so;
     private Invoice inv;
@@ -21,14 +21,18 @@ public class Refund_view extends javax.swing.JFrame {
     
     public Refund_view(int soid) {
         this.soid = soid;
+       //this.invID = so.getInvoiceIDs();
+        
         initComponents();
         so = new SaleOrder();
         inv = new Invoice();
         
         so.connect();
+        
         addInfo();
         soTable();
         invoiceTable();
+        refundReport();
         
         so.disconnect();
         //super.setSize(800,600);
@@ -274,7 +278,13 @@ public class Refund_view extends javax.swing.JFrame {
             model.setValueAt(product.get("TOTALPRICE"), line, 6);
             line++;
         }
+        
+    }
     
+    public void refundReport(){
+        totalSO.setText(so.getSumTotalPriceSO()+"");
+        totalInvoice.setText(so.getSumTotalPriceInvoice()+"");
+        
     }
     /**
      * @param args the command line arguments
