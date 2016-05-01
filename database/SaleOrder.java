@@ -108,6 +108,29 @@ public class SaleOrder extends ConnectDB {
         }
         return products;
     }
+    
+    public Double getSumTotalPriceSO() {
+        ArrayList<HashMap> proids = getProductIDs();
+        Double sumTotalPrice = 0.0;
+        for(HashMap proid : proids) {
+            Product product = new Product();
+            product.setProductID(Integer.parseInt(String.valueOf(proid.get("PRODUCTID"))));
+            product.setDocID(soID);
+            sumTotalPrice += Double.parseDouble(String.valueOf(product.getTotalPriceSO()));
+        }
+        return sumTotalPrice;
+    }
+    
+    public Double getSumTotalPriceInvoice() {
+        ArrayList<HashMap> invids = getInvoiceIDs();
+        Double sumTotalPrice = 0.0;
+        for(HashMap invid : invids) {
+            Invoice inv = new Invoice();
+            inv.setInvoiceID(Integer.parseInt(String.valueOf(invid.get("INVOICEID"))));
+            sumTotalPrice += inv.getSumTotalPrice();
+        }
+        return sumTotalPrice;
+    }
 
 }
 
@@ -128,6 +151,8 @@ class Test {
         System.out.println(s.getTax());
         System.out.println(s.getSaleName());
         System.out.println(s.getInvoiceIDs());
+        System.out.println(s.getSumTotalPriceSO());
+        System.out.println(s.getSumTotalPriceInvoice());
         s.disconnect();
     }
 }

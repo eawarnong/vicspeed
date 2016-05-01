@@ -54,13 +54,13 @@ public class Invoice_view extends javax.swing.JFrame {
     }
     
     private void summary() {
-        String sumTotalPrice = inv.getSumTotalPrice();
-        //discount = inv.getDiscount();
-        //finalPrice = (100-discount)*price/100;
+        Double sumTotalPrice = inv.getSumTotalPrice();
+        Double discount = inv.getDiscount();
+        Double price = sumTotalPrice - discount;
         
-        totalPrice.setText(sumTotalPrice);
-        //totalDiscount.setText(discount);
-        //finalPrice.setText(finalPrice);
+        totalPrice.setText(sumTotalPrice + "");
+        totalDiscount.setText(discount + "");
+        finalPrice.setText(price + "");
     }
 
     /**
@@ -78,7 +78,7 @@ public class Invoice_view extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         totalPrice = new javax.swing.JLabel();
-        discount = new javax.swing.JLabel();
+        totalDiscount = new javax.swing.JLabel();
         finalPrice = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         date = new javax.swing.JLabel();
@@ -91,7 +91,6 @@ public class Invoice_view extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         soID = new javax.swing.JLabel();
-        LastName = new javax.swing.JLabel();
         cusid = new javax.swing.JLabel();
         cusName = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -124,68 +123,71 @@ public class Invoice_view extends javax.swing.JFrame {
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, -1, -1));
 
         totalPrice.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
+        totalPrice.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        totalPrice.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel2.add(totalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 110, 20));
 
-        discount.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jPanel2.add(discount, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 110, 20));
+        totalDiscount.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
+        totalDiscount.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        totalDiscount.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel2.add(totalDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 110, 20));
 
         finalPrice.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
+        finalPrice.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        finalPrice.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel2.add(finalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 110, 20));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 670, 110));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 700, 110));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         date.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jPanel1.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 110, 20));
+        jPanel1.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 12, 110, 20));
 
         jLabel13.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel13.setText("วันที่ใบกำกับ");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
 
         invoiceID.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jPanel1.add(invoiceID, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 110, 20));
+        jPanel1.add(invoiceID, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 42, 140, 20));
 
         companyName.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jPanel1.add(companyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 110, 20));
+        jPanel1.add(companyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 42, 140, 20));
 
         jLabel12.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel12.setText("ชื่อบริษัท");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel1.setText("อ้างถึง SO No.");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel3.setText("ชื่อผู้ติดต่อ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 80, -1));
 
         jLabel5.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel5.setText("เลขที่ใบกำกับ");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel11.setText("รหัสลูกค้า");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         soID.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jPanel1.add(soID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 110, 20));
-
-        LastName.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
-        jPanel1.add(LastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 110, 20));
+        jPanel1.add(soID, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 110, 20));
 
         cusid.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jPanel1.add(cusid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 110, 20));
+        jPanel1.add(cusid, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 12, 140, 20));
 
         cusName.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jPanel1.add(cusName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 110, 20));
+        jPanel1.add(cusName, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 12, 140, 20));
 
         jLabel17.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 110, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 670, 120));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 700, 90));
 
         productTable.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         productTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -206,7 +208,7 @@ public class Invoice_view extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(productTable);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 670, 170));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 700, 190));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -259,12 +261,10 @@ public class Invoice_view extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LastName;
     private javax.swing.JLabel companyName;
     private javax.swing.JLabel cusName;
     private javax.swing.JLabel cusid;
     private javax.swing.JLabel date;
-    private javax.swing.JLabel discount;
     private javax.swing.JLabel finalPrice;
     private javax.swing.JLabel invoiceID;
     private javax.swing.JButton jButton2;
@@ -286,6 +286,7 @@ public class Invoice_view extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable productTable;
     private javax.swing.JLabel soID;
+    private javax.swing.JLabel totalDiscount;
     private javax.swing.JLabel totalPrice;
     // End of variables declaration//GEN-END:variables
 }

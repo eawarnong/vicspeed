@@ -20,10 +20,10 @@ public class Invoice extends ConnectDB {
         return invoiceID;
     }
     
-    public String getSOID() {
+    public int getSOID() {
         String sql = "SELECT SOID FROM VICSPEED_INVOICE WHERE INVOICEID = " + invoiceID;
         HashMap soid = db.queryRow(sql);
-        return String.valueOf(soid.get("SOID"));
+        return Integer.parseInt(String.valueOf(soid.get("SOID")));
     }
 
     public String getDateInvoice() {
@@ -95,7 +95,7 @@ public class Invoice extends ConnectDB {
         return products;
     }
     
-    public String getSumTotalPrice() {
+    public Double getSumTotalPrice() {
         ArrayList<HashMap> proids = getProductIDs();
         Double sumTotalPrice = 0.0;
         for(HashMap proid : proids) {
@@ -104,7 +104,15 @@ public class Invoice extends ConnectDB {
             product.setDocID(invoiceID);
             sumTotalPrice += Double.parseDouble(String.valueOf(product.getTotalPriceInvoice()));
         }
-        return sumTotalPrice + "";
+        return sumTotalPrice;
+    }
+    
+    public double getDiscount() {
+        SaleOrder saleOrder = new SaleOrder();
+        saleOrder.setSoID(getSOID());
+        double discount = saleOrder.getDiscount();
+        double totalPrice = getSumTotalPrice();
+        return discount*totalPrice/100;
     }
 
 }
