@@ -4,7 +4,7 @@ package view;
 import database.Invoice;
 import database.SaleOrder;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashMap;s
 import javax.swing.table.DefaultTableModel;
 
 public class Refund_view extends javax.swing.JFrame {
@@ -25,7 +25,7 @@ public class Refund_view extends javax.swing.JFrame {
         
         initComponents();
         so = new SaleOrder();
-        inv = new Invoice();
+        //inv = new Invoice();
         
         so.connect();
         
@@ -235,21 +235,6 @@ public class Refund_view extends javax.swing.JFrame {
         SOid.setText(soid+"");
         companyName.setText(so.getCustomerCompany());
        
-        
-        /*invoiceList.setModel(new javax.swing.AbstractListModel() {
-        
-        
-        String[] strings = { "Naja", "Item 2", "Item 3", "Item 4", "Item 5" };
-        public int getSize() {
-        return strings.length;
-        }
-        
-        public Object getElementAt(int i) {
-        return strings[i];
-        }
-        
-        });*/
- 
     }
     
     public void soTable(){
@@ -271,7 +256,7 @@ public class Refund_view extends javax.swing.JFrame {
     }
     
     public void invoiceTable(){
-        ArrayList<HashMap> products = inv.getProducts();
+        ArrayList<HashMap> products = so.getInvoiceIDs();
         DefaultTableModel model = (DefaultTableModel) invoiceTable.getModel();
         int line = 0;
         for (HashMap product : products) {
@@ -289,10 +274,12 @@ public class Refund_view extends javax.swing.JFrame {
         
     }
     
+  
+    
     public void refundReport(){
         totalSO.setText(so.getSumTotalPriceSO()+"");
         totalInvoice.setText(so.getSumTotalPriceInvoice()+"");
-        
+        refund.setText(so.getSumDiscount()+"");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
