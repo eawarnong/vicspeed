@@ -12,13 +12,12 @@ public class SaleOrder_view extends javax.swing.JFrame {
     /**
      * Creates new form Refund_view
      */
-    public SaleOrder_view(/*int soID*/) {
+    public SaleOrder_view(int soID) {
         saleOrder = new SaleOrder();
-        // this.soID = soID;
-        soID = 40001;   // test soID
+        this.soID = soID;
+        
         saleOrder.connect();
         initComponents();
-        //super.setSize(800,600);
         addInfo();
         addProducts();
         summary();
@@ -37,7 +36,7 @@ public class SaleOrder_view extends javax.swing.JFrame {
     }
     
     private void addProducts() {
-        ArrayList<HashMap> products = /*inv.getProducts();*/ saleOrder.getProducts();
+        ArrayList<HashMap> products = saleOrder.getProducts();
         DefaultTableModel model = (DefaultTableModel) soTable.getModel();
         int line = 0;
         for (HashMap product : products) {
@@ -261,7 +260,7 @@ public class SaleOrder_view extends javax.swing.JFrame {
         /* Create and display the form */ //JAJANAJA
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SaleOrder_view().setVisible(true);
+                //new SaleOrder_view().setVisible(true);
             }
         });
     }

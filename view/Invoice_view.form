@@ -91,7 +91,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="totalSO">
+        <Component class="javax.swing.JLabel" name="totalPrice">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Angsana New" size="20" style="1"/>
@@ -103,7 +103,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="totalInvoice">
+        <Component class="javax.swing.JLabel" name="discount">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Angsana New" size="20" style="1"/>
@@ -115,7 +115,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="refund">
+        <Component class="javax.swing.JLabel" name="finalPrice">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Angsana New" size="20" style="1"/>

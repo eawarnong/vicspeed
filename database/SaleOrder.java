@@ -84,7 +84,7 @@ public class SaleOrder extends ConnectDB {
         return db.queryRows(sql);
     }
 
-    private ArrayList<HashMap> getProductIDs() {
+    public ArrayList<HashMap> getProductIDs() {
         String sql = "SELECT PRODUCTID FROM VICSPEED_PRODUCTSO WHERE SOID = " + soID;
         ArrayList<HashMap> proid = db.queryRows(sql);
         return db.queryRows(sql);
@@ -96,13 +96,14 @@ public class SaleOrder extends ConnectDB {
         for(HashMap proid : proids) {
             Product product = new Product();
             HashMap productHashMap = new HashMap();
-            //product.setProductID(Integer.parseInt(String.valueOf(proid.get("PRODUCTID"))));
+            product.setProductID(Integer.parseInt(String.valueOf(proid.get("PRODUCTID"))));
+            product.setDocID(soID);
             productHashMap.put("PRODUCTID", product.getProductID());
             productHashMap.put("PRODUCTNAME", product.getProductName());
             productHashMap.put("TYPEOFPRODUCT", product.getProductType());
-            productHashMap.put("AMOUNT", product.getProductAmount());
+            productHashMap.put("AMOUNT", product.getProductAmountSO());
             productHashMap.put("PRICE", product.getProductPrice());
-            productHashMap.put("TOTALPRICE", product.getTotalPrice());
+            productHashMap.put("TOTALPRICE", product.getTotalPriceSO());
             products.add(productHashMap);
         }
         return products;

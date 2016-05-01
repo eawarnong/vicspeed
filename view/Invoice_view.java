@@ -36,29 +36,29 @@ public class Invoice_view extends javax.swing.JFrame {
     }
 
     private void addProducts() {
-        ArrayList<HashMap> products = /*inv.getProducts();*/ inv.getProductIDs();
+        ArrayList<HashMap> products = inv.getProducts();
         DefaultTableModel model = (DefaultTableModel) productTable.getModel();
         int line = 0;
         for (HashMap product : products) {
             model.addRow(new Object[0]);
             model.setValueAt(line+1, line, 0);
-            model.setValueAt(product.get("PRODUCTID"), line, 1); // just for test
-//            model.setValueAt(product.get("PRODUCTID"), line, 1);
-//            model.setValueAt(product.get("PRODUCTNAME"), line, 2);
-//            model.setValueAt(product.get("AMOUNT"), line, 3);
-//            model.setValueAt(product.get("TYPEOFPRODUCT"), line, 4);
-//            model.setValueAt(product.get("PRICE"), line, 5);
-//            model.setValueAt(product.get("TOTALPRICE"), line, 6);
+            //model.setValueAt(product.get("PRODUCTID"), line, 1); // just for test
+            model.setValueAt(product.get("PRODUCTID"), line, 1);
+            model.setValueAt(product.get("PRODUCTNAME"), line, 2);
+            model.setValueAt(product.get("AMOUNT"), line, 3);
+            model.setValueAt(product.get("TYPEOFPRODUCT"), line, 4);
+            model.setValueAt(product.get("PRICE"), line, 5);
+            model.setValueAt(product.get("TOTALPRICE"), line, 6);
             line++;
         }
     }
     
     private void summary() {
-        //sumTotalPrice = inv.getSumTotalPrice();
+        String sumTotalPrice = inv.getSumTotalPrice();
         //discount = inv.getDiscount();
         //finalPrice = (100-discount)*price/100;
         
-        //totalPrice.setText(sumTotalPrice);
+        totalPrice.setText(sumTotalPrice);
         //totalDiscount.setText(discount);
         //finalPrice.setText(finalPrice);
     }
@@ -77,9 +77,9 @@ public class Invoice_view extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        totalSO = new javax.swing.JLabel();
-        totalInvoice = new javax.swing.JLabel();
-        refund = new javax.swing.JLabel();
+        totalPrice = new javax.swing.JLabel();
+        discount = new javax.swing.JLabel();
+        finalPrice = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         date = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -123,14 +123,14 @@ public class Invoice_view extends javax.swing.JFrame {
         jLabel8.setText("ส่วนลดการค้า");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, -1, -1));
 
-        totalSO.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jPanel2.add(totalSO, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 110, 20));
+        totalPrice.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
+        jPanel2.add(totalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 110, 20));
 
-        totalInvoice.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jPanel2.add(totalInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 110, 20));
+        discount.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
+        jPanel2.add(discount, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 110, 20));
 
-        refund.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jPanel2.add(refund, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 110, 20));
+        finalPrice.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
+        jPanel2.add(finalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 110, 20));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 670, 110));
 
@@ -264,6 +264,8 @@ public class Invoice_view extends javax.swing.JFrame {
     private javax.swing.JLabel cusName;
     private javax.swing.JLabel cusid;
     private javax.swing.JLabel date;
+    private javax.swing.JLabel discount;
+    private javax.swing.JLabel finalPrice;
     private javax.swing.JLabel invoiceID;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -283,9 +285,7 @@ public class Invoice_view extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable productTable;
-    private javax.swing.JLabel refund;
     private javax.swing.JLabel soID;
-    private javax.swing.JLabel totalInvoice;
-    private javax.swing.JLabel totalSO;
+    private javax.swing.JLabel totalPrice;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,7 +19,8 @@ public class Refund_view extends javax.swing.JFrame {
     private Invoice inv;
      
     
-    public Refund_view() {
+    public Refund_view(int soid) {
+        this.soid = soid;
         initComponents();
         so = new SaleOrder();
         inv = new Invoice();
@@ -241,7 +242,7 @@ public class Refund_view extends javax.swing.JFrame {
     
     public void soTable(){
         
-        ArrayList<HashMap> products = so.getProductIDs();
+        ArrayList<HashMap> products = so.getProducts();
         DefaultTableModel model = (DefaultTableModel) soTable.getModel();
         int line = 0;
         for (HashMap product : products) {
@@ -258,7 +259,7 @@ public class Refund_view extends javax.swing.JFrame {
     }
     
     public void invoiceTable(){
-        ArrayList<HashMap> products = inv.getProductIDs();
+        ArrayList<HashMap> products = inv.getProducts();
         DefaultTableModel model = (DefaultTableModel) invoiceTable.getModel();
         int line = 0;
         for (HashMap product : products) {

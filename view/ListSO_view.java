@@ -122,7 +122,7 @@ public class ListSO_view extends javax.swing.JFrame {
             SoBtn.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    //new SaleOrder_view(soid).setVisible(true);
+                    new SaleOrder_view(soid).setVisible(true);
                 }
             });
             

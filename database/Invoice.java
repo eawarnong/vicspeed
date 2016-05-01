@@ -82,16 +82,29 @@ public class Invoice extends ConnectDB {
         for (HashMap proid : proids) {
             Product product = new Product();
             HashMap productHashMap = new HashMap();
-            //product.setProductID(Integer.parseInt(String.valueOf(proid.get("PRODUCTID"))));
+            product.setProductID(Integer.parseInt(String.valueOf(proid.get("PRODUCTID"))));
+            product.setDocID(invoiceID);
             productHashMap.put("PRODUCTID", product.getProductID());
             productHashMap.put("PRODUCTNAME", product.getProductName());
             productHashMap.put("TYPEOFPRODUCT", product.getProductType());
-            productHashMap.put("AMOUNT", product.getProductAmount());
+            productHashMap.put("AMOUNT", product.getProductAmountInvoice());
             productHashMap.put("PRICE", product.getProductPrice());
-            productHashMap.put("TOTALPRICE", product.getTotalPrice());
+            productHashMap.put("TOTALPRICE", product.getTotalPriceInvoice());
             products.add(productHashMap);
         }
         return products;
+    }
+    
+    public String getSumTotalPrice() {
+        ArrayList<HashMap> proids = getProductIDs();
+        Double sumTotalPrice = 0.0;
+        for(HashMap proid : proids) {
+            Product product = new Product();
+            product.setProductID(Integer.parseInt(String.valueOf(proid.get("PRODUCTID"))));
+            product.setDocID(invoiceID);
+            sumTotalPrice += Double.parseDouble(String.valueOf(product.getTotalPriceInvoice()));
+        }
+        return sumTotalPrice + "";
     }
 
 }
@@ -102,17 +115,19 @@ class testInv {
         Invoice i = new Invoice();
         i.connect();
         i.setInvoiceID(80001);
-
-        System.out.println(i.getInvoiceID());
-        System.out.println(i.getDateInvoice());
-        System.out.println(i.getApproveID());
-        System.out.println(i.getDateApprove());
-        System.out.println(i.getProductIDs());
-        System.out.println("");
-        System.out.println(i.getCustomerID());
-        System.out.println(i.getCustomerName());
-        System.out.println(i.getCompanyName());
-
+//
+//        System.out.println(i.getInvoiceID());
+//        System.out.println(i.getDateInvoice());
+//        System.out.println(i.getApproveID());
+//        System.out.println(i.getDateApprove());
+//        System.out.println(i.getProductIDs());
+//        System.out.println("");
+//        System.out.println(i.getCustomerID());
+//        System.out.println(i.getCustomerName());
+//        System.out.println(i.getCompanyName());
+//        
+        System.out.println(i.getProducts());
+//
         i.disconnect();
     }
 }
