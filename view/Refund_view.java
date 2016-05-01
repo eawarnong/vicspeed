@@ -1,6 +1,7 @@
 
 package view;
 
+import database.Invoice;
 import database.SaleOrder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,15 +13,23 @@ public class Refund_view extends javax.swing.JFrame {
      * Creates new form Refund_view
      */
     private int soid;
+    private int invID;
     private DefaultTableModel model;
-    private ArrayList<HashMap> refundInfo;
+    private SaleOrder so;
+    private Invoice inv;
+     
     
-    public Refund_view(int soid) {
+    public Refund_view() {
         initComponents();
+        so = new SaleOrder();
+        inv = new Invoice();
         
-        this.soid = soid;
-
-        showData();
+        so.connect();
+        addInfo();
+        soTable();
+        invoiceTable();
+        
+        so.disconnect();
         //super.setSize(800,600);
     }
 
@@ -203,15 +212,15 @@ public class Refund_view extends javax.swing.JFrame {
         //customerID.setText("text");
     }//GEN-LAST:event_customerIDComponentShown
 
-    private void showData() {
-        SaleOrder s = new SaleOrder();
-        s.connect();
-        s.setSoID(soid);
+    private void addInfo() {
         
-        customerID.setText(s.getCustomerID()+"");
-        customerName.setText(s.getCustomerName());
+        
+        so.setSoID(soid);
+        
+        customerID.setText(so.getCustomerID()+"");
+        customerName.setText(so.getCustomerName());
         SOid.setText(soid+"");
-        companyName.setText(s.getCustomerCompany());
+        companyName.setText(so.getCustomerCompany());
        
         
         /*invoiceList.setModel(new javax.swing.AbstractListModel() {
@@ -230,24 +239,41 @@ public class Refund_view extends javax.swing.JFrame {
  
     }
     
-    public void refundTable(){
+    public void soTable(){
         
-        model = (DefaultTableModel)soTable.getModel();
-        model.setRowCount(0);
+        ArrayList<HashMap> products = so.getProductIDs();
+        DefaultTableModel model = (DefaultTableModel) soTable.getModel();
         int line = 0;
-        
-        for(HashMap info : refundInfo){
+        for (HashMap product : products) {
             model.addRow(new Object[0]);
-            model.setValueAt(info.get("CarModel"), line, 0);
-            model.setValueAt(info.get("PassengerSeats"), line, 1);
-            model.setValueAt(info.get("Distance"), line, 2);
-            model.setValueAt(info.get("Fuel"), line, 3);
-            model.setValueAt(info.get("Available"), line, 4);
-            model.setValueAt(info.get("CustomerName"), line, 5);
-            model.setValueAt(info.get("ExpiredDate"), line, 6);
+            model.setValueAt(line+1, line, 0);
+            model.setValueAt(product.get("PRODUCTID"), line, 1); 
+            model.setValueAt(product.get("PRODUCTNAME"), line, 2);
+            model.setValueAt(product.get("AMOUNT"), line, 3);
+            model.setValueAt(product.get("TYPEOFPRODUCT"), line, 4);
+            model.setValueAt(product.get("PRICE"), line, 5);
+            model.setValueAt(product.get("TOTALPRICE"), line, 6);
             line++;
-            
         }
+    }
+    
+    public void invoiceTable(){
+        ArrayList<HashMap> products = inv.getProductIDs();
+        DefaultTableModel model = (DefaultTableModel) invoiceTable.getModel();
+        int line = 0;
+        for (HashMap product : products) {
+            model.addRow(new Object[0]);
+            model.setValueAt(line+1, line, 0);
+            model.setValueAt(product.get("PRODUCTID"), line, 1); 
+            model.setValueAt(product.get("PRODUCTID"), line, 1);
+            model.setValueAt(product.get("PRODUCTNAME"), line, 2);
+            model.setValueAt(product.get("AMOUNT"), line, 3);
+            model.setValueAt(product.get("TYPEOFPRODUCT"), line, 4);
+            model.setValueAt(product.get("PRICE"), line, 5);
+            model.setValueAt(product.get("TOTALPRICE"), line, 6);
+            line++;
+        }
+    
     }
     /**
      * @param args the command line arguments
