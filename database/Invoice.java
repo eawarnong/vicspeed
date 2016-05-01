@@ -7,19 +7,13 @@ import java.util.HashMap;
 public class Invoice extends ConnectDB {
 
     private int invoiceID;
-    private int soID;
-
+    
     public Invoice() {
         super();
     }
 
     public void setInvoiceID(int invoiceID) {
         this.invoiceID = invoiceID;
-    }
-    
-    private void setSOID(){
-        SaleOrder so = new SaleOrder();
-        this.soID = so.getSoID();
     }
 
     public int getInvoiceID() {
@@ -81,15 +75,7 @@ public class Invoice extends ConnectDB {
         ArrayList<HashMap> proid = db.queryRows(sql);
         return proid;
     }
-    
-    public ArrayList<HashMap> getProductIDsBySO(int soid) {
-        String sql = "SELECT PRODUCTID FROM VICSPEED_PRODUCTINV"
-                + " WHERE INVOICEID = " + invoiceID + "AND SOID = "+soid;
-        ArrayList<HashMap> proid = db.queryRows(sql);
-        return proid;
-    }
-    
-    
+
     public ArrayList<HashMap> getProducts() {
         ArrayList<HashMap> proids = getProductIDs();
         ArrayList<HashMap> products = new ArrayList<HashMap>();
@@ -108,28 +94,7 @@ public class Invoice extends ConnectDB {
         }
         return products;
     }
-    
-    public ArrayList<HashMap> getProductsBySO() {
-        
-        ArrayList<HashMap> proids = getProductIDsBySO(soID);
-        ArrayList<HashMap> products = new ArrayList<HashMap>();
-        for (HashMap proid : proids) {
-            Product product = new Product();
-            HashMap productHashMap = new HashMap();
-            product.setProductID(Integer.parseInt(String.valueOf(proid.get("PRODUCTID"))));
-            product.setDocID(invoiceID);
-            productHashMap.put("PRODUCTID", product.getProductID());
-            productHashMap.put("PRODUCTNAME", product.getProductName());
-            productHashMap.put("TYPEOFPRODUCT", product.getProductType());
-            productHashMap.put("AMOUNT", product.getProductAmountInvoice());
-            productHashMap.put("PRICE", product.getProductPrice());
-            productHashMap.put("TOTALPRICE", product.getTotalPriceInvoice());
-            products.add(productHashMap);
-        }
-        return products;
-    }
-    
-    
+
     public Double getSumTotalPrice() {
         ArrayList<HashMap> proids = getProductIDs();
         Double sumTotalPrice = 0.0;

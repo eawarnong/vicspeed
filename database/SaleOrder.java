@@ -109,6 +109,26 @@ public class SaleOrder extends ConnectDB {
         return products;
     }
     
+    public ArrayList<HashMap> getAllInvioceProducts() {
+        Product product = new Product();
+        ArrayList<HashMap> pros = product.getAllInvioceProducts(soID);
+        ArrayList<HashMap> products = new ArrayList<HashMap>();
+        for(HashMap pro : pros) {
+            HashMap productHashMap = new HashMap();
+            int proid = Integer.parseInt(String.valueOf(pro.get("PRODUCTID")));
+            product.setProductID(proid);
+            product.setDocID(soID);
+            productHashMap.put("PRODUCTID", proid);
+            productHashMap.put("PRODUCTNAME", product.getProductName());
+            productHashMap.put("TYPEOFPRODUCT", product.getProductType());
+            productHashMap.put("AMOUNT", pro.get("AMOUNT"));
+            productHashMap.put("PRICE", product.getProductPrice());
+            productHashMap.put("TOTALPRICE", Double.parseDouble(String.valueOf(pro.get("TOTALPRICE"))));
+            products.add(productHashMap);
+        }
+        return products;
+    }
+
     public Double getSumTotalPriceSO() {
         ArrayList<HashMap> proids = getProductIDs();
         Double sumTotalPrice = 0.0;
@@ -145,12 +165,12 @@ public class SaleOrder extends ConnectDB {
 
 }
 
-//class Test {
-//
-//    public static void main(String[] args) {
-//        SaleOrder s = new SaleOrder();
-//        s.connect();
-//        s.setSoID(40001);
+class Test {
+
+    public static void main(String[] args) {
+        SaleOrder s = new SaleOrder();
+        s.connect();
+        s.setSoID(40004);
 //
 //        System.out.println(s.getSoID());
 //        System.out.println(s.getDateSo());
@@ -164,6 +184,8 @@ public class SaleOrder extends ConnectDB {
 //        System.out.println(s.getInvoiceIDs());
 //        System.out.println(s.getSumTotalPriceSO());
 //        System.out.println(s.getSumTotalPriceInvoice());
-//        s.disconnect();
-//    }
-//}
+        System.out.println(s.getProducts());
+        System.out.println(s.getAllInvioceProducts());
+        s.disconnect();
+    }
+}

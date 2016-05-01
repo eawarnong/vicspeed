@@ -1,4 +1,3 @@
-
 package view;
 
 import database.Invoice;
@@ -13,27 +12,22 @@ public class Refund_view extends javax.swing.JFrame {
      * Creates new form Refund_view
      */
     private int soid;
-    //private int invID;
     private DefaultTableModel model;
     private SaleOrder so;
-    private Invoice inv;
-     
-    
+
     public Refund_view(int soid) {
         this.soid = soid;
-       //this.invID = so.getInvoiceIDs();
-        
+
         initComponents();
         so = new SaleOrder();
-        //inv = new Invoice();
-        
+
         so.connect();
-        
+
         addInfo();
         soTable();
         invoiceTable();
         refundReport();
-        
+
         so.disconnect();
         //super.setSize(800,600);
     }
@@ -106,14 +100,17 @@ public class Refund_view extends javax.swing.JFrame {
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, -1));
 
         totalSO.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
+        totalSO.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         totalSO.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.add(totalSO, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 90, 20));
 
         totalInvoice.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
+        totalInvoice.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         totalInvoice.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.add(totalInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 90, 20));
 
         refund.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
+        refund.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         refund.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.add(refund, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 90, 20));
 
@@ -170,7 +167,7 @@ public class Refund_view extends javax.swing.JFrame {
                 searchBtnMouseClicked(evt);
             }
         });
-        jPanel1.add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 35, 30, 30));
+        jPanel1.add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 38, 30, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 670, 110));
 
@@ -183,11 +180,12 @@ public class Refund_view extends javax.swing.JFrame {
                 " No.", "รหัสสินค้า", "ชื่อสินค้า", "จำนวน", "หน่วย", "ราคา/หน่วย", "จำนวนเงิน"
             }
         ));
+        soTable.setRowHeight(20);
         jScrollPane1.setViewportView(soTable);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 670, 90));
 
-        invoiceTable.setFont(new java.awt.Font("Angsana New", 0, 14)); // NOI18N
+        invoiceTable.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         invoiceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -196,6 +194,7 @@ public class Refund_view extends javax.swing.JFrame {
                 "No.", "รหัสสินค้า", "ชื่อสินค้า", "จำนวน", "หน่วย", "ราคา/หน่วย", "จำนวนเงิน"
             }
         ));
+        invoiceTable.setRowHeight(20);
         jScrollPane3.setViewportView(invoiceTable);
 
         getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 670, 90));
@@ -226,67 +225,59 @@ public class Refund_view extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBtnMouseClicked
 
     private void addInfo() {
-        
-        
+
         so.setSoID(soid);
-        
-        customerID.setText(so.getCustomerID()+"");
+
+        customerID.setText(so.getCustomerID() + "");
         customerName.setText(so.getCustomerName());
-        SOid.setText(soid+"");
+        SOid.setText(soid + "");
         companyName.setText(so.getCustomerCompany());
-        
-        ArrayList<HashMap> invIDs = saleOrder.getInvoiceIDs();
-        for(HashMap invID : invIDs) {
+
+        ArrayList<HashMap> invIDs = so.getInvoiceIDs();
+        for (HashMap invID : invIDs) {
             invCombo.addItem(invID.get("INVOICEID"));
         }
-       
+
     }
-    
-    public void soTable(){
-        
+
+    public void soTable() {
         ArrayList<HashMap> products = so.getProducts();
         DefaultTableModel model = (DefaultTableModel) soTable.getModel();
         int line = 0;
         for (HashMap product : products) {
             model.addRow(new Object[0]);
-            model.setValueAt(line+1, line, 0);
-            model.setValueAt(product.get("PRODUCTID"), line, 1); 
-            model.setValueAt(product.get("PRODUCTNAME"), line, 2);
-            model.setValueAt(product.get("AMOUNT"), line, 3);
-            model.setValueAt(product.get("TYPEOFPRODUCT"), line, 4);
-            model.setValueAt(product.get("PRICE"), line, 5);
-            model.setValueAt(product.get("TOTALPRICE"), line, 6);
-            line++;
-        }
-    }
-    
-    public void invoiceTable(){
-        ArrayList<HashMap> products = inv.getProductIDsBySO(soid);
-        DefaultTableModel model = (DefaultTableModel) invoiceTable.getModel();
-        int line = 0;
-        for (HashMap product : products) {
-            model.addRow(new Object[0]);
-            model.setValueAt(line+1, line, 0);
-            model.setValueAt(product.get("PRODUCTID"), line, 1); 
+            model.setValueAt(line + 1, line, 0);
             model.setValueAt(product.get("PRODUCTID"), line, 1);
             model.setValueAt(product.get("PRODUCTNAME"), line, 2);
             model.setValueAt(product.get("AMOUNT"), line, 3);
             model.setValueAt(product.get("TYPEOFPRODUCT"), line, 4);
-            model.setValueAt(product.get("PRICE"), line, 5);
-            model.setValueAt(product.get("TOTALPRICE"), line, 6);
+            model.setValueAt(String.format("%,.2f", product.get("PRICE")), line, 5);
+            model.setValueAt(String.format("%,.2f", product.get("TOTALPRICE")), line, 6);
             line++;
         }
-        
     }
-    
-  
-    
-  
-    
-    public void refundReport(){
-        totalSO.setText(so.getSumTotalPriceSO()+"");
-        totalInvoice.setText(so.getSumTotalPriceInvoice()+"");
-        refund.setText(so.getSumDiscount()+"");
+
+    public void invoiceTable() {
+        ArrayList<HashMap> products = so.getAllInvioceProducts();
+        DefaultTableModel model = (DefaultTableModel) invoiceTable.getModel();
+        int line = 0;
+        for (HashMap product : products) {
+            model.addRow(new Object[0]);
+            model.setValueAt(line + 1, line, 0);
+            model.setValueAt(product.get("PRODUCTID"), line, 1);
+            model.setValueAt(product.get("PRODUCTNAME"), line, 2);
+            model.setValueAt(product.get("AMOUNT"), line, 3);
+            model.setValueAt(product.get("TYPEOFPRODUCT"), line, 4);
+            model.setValueAt(String.format("%,.2f", product.get("PRICE")), line, 5);
+            model.setValueAt(String.format("%,.2f", product.get("TOTALPRICE")), line, 6);
+            line++;
+        }
+    }
+
+    public void refundReport() {
+        totalSO.setText(String.format("%,.2f", so.getSumTotalPriceSO()));
+        totalInvoice.setText(String.format("%,.2f", so.getSumTotalPriceInvoice()));
+        refund.setText(String.format("%,.2f", so.getSumDiscount()));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
