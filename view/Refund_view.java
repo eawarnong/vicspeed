@@ -2,8 +2,14 @@ package view;
 
 import database.Invoice;
 import database.SaleOrder;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JFrame;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Refund_view extends javax.swing.JFrame {
@@ -19,6 +25,8 @@ public class Refund_view extends javax.swing.JFrame {
         this.soid = soid;
 
         initComponents();
+        resizeTable(soTable);
+        resizeTable(invoiceTable);
         so = new SaleOrder();
 
         so.connect();
@@ -73,17 +81,23 @@ public class Refund_view extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Invoice.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, 30));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/SO.png"))); // NOI18N
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 90, 30));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 90, 30));
 
         jButton2.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jButton2.setText("เสร็จสิ้น");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 540, -1, 25));
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 550, -1, 25));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -102,48 +116,48 @@ public class Refund_view extends javax.swing.JFrame {
         totalSO.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         totalSO.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         totalSO.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.add(totalSO, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 90, 20));
+        jPanel2.add(totalSO, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 90, 25));
 
         totalInvoice.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         totalInvoice.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         totalInvoice.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.add(totalInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 90, 20));
+        jPanel2.add(totalInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 90, 25));
 
         refund.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         refund.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         refund.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.add(refund, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 90, 20));
+        jPanel2.add(refund, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 90, 25));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 670, 110));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 700, 110));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel1.setText("อ้างถึง SO No.");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel3.setText("ชื่อผู้ติดต่อ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel5.setText("เลขที่ใบกำกับ");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel4.setText("ชื่อบริษัท");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jLabel11.setText("รหัสลูกค้า");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         SOid.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jPanel1.add(SOid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 110, 20));
+        jPanel1.add(SOid, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 110, 20));
 
         companyName.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jPanel1.add(companyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 110, 20));
+        jPanel1.add(companyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 110, 20));
 
         customerID.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         customerID.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -151,15 +165,15 @@ public class Refund_view extends javax.swing.JFrame {
                 customerIDComponentShown(evt);
             }
         });
-        jPanel1.add(customerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 110, 20));
+        jPanel1.add(customerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 110, 20));
 
         customerName.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jPanel1.add(customerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 110, 20));
+        jPanel1.add(customerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 110, 20));
 
         jLabel17.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 110, 20));
 
-        jPanel1.add(invCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 90, -1));
+        jPanel1.add(invCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 90, -1));
 
         searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/searchButton.png"))); // NOI18N
         searchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,9 +181,9 @@ public class Refund_view extends javax.swing.JFrame {
                 searchBtnMouseClicked(evt);
             }
         });
-        jPanel1.add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 38, 30, 30));
+        jPanel1.add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 30, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 670, 110));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 700, 80));
 
         soTable.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         soTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -183,7 +197,7 @@ public class Refund_view extends javax.swing.JFrame {
         soTable.setRowHeight(20);
         jScrollPane1.setViewportView(soTable);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 670, 90));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 700, 90));
 
         invoiceTable.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         invoiceTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -197,7 +211,7 @@ public class Refund_view extends javax.swing.JFrame {
         invoiceTable.setRowHeight(20);
         jScrollPane3.setViewportView(invoiceTable);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 670, 90));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 700, 90));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -219,10 +233,24 @@ public class Refund_view extends javax.swing.JFrame {
         so.connect();
 
         int invID = Integer.parseInt(String.valueOf(invCombo.getSelectedItem()));
-        new Invoice_view(invID).setVisible(true);
+        Invoice_view invoiceView = new Invoice_view(invID);
+        invoiceView.setVisible(true);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        invoiceView.setLocation(screenSize.width / 3 + 50, screenSize.height / 4 + 50);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                invoiceView.dispose();
+            }
+        });
 
         so.disconnect();
     }//GEN-LAST:event_searchBtnMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
 
     private void addInfo() {
 
@@ -238,6 +266,16 @@ public class Refund_view extends javax.swing.JFrame {
             invCombo.addItem(invID.get("INVOICEID"));
         }
 
+    }
+    
+    private void resizeTable(JTable table) {
+        table.getColumnModel().getColumn(0).setPreferredWidth(10);
+        table.getColumnModel().getColumn(1).setPreferredWidth(75);
+        table.getColumnModel().getColumn(2).setPreferredWidth(140);
+        table.getColumnModel().getColumn(3).setPreferredWidth(60);
+        table.getColumnModel().getColumn(4).setPreferredWidth(60);
+        table.getColumnModel().getColumn(5).setPreferredWidth(90);
+        table.getColumnModel().getColumn(6).setPreferredWidth(90);
     }
 
     public void soTable() {
@@ -275,9 +313,11 @@ public class Refund_view extends javax.swing.JFrame {
     }
 
     public void refundReport() {
-        totalSO.setText(String.format("%,.2f", so.getSumTotalPriceSO()));
-        totalInvoice.setText(String.format("%,.2f", so.getSumTotalPriceInvoice()));
+        double totalInvInfo = (100 - so.getDiscount()) * so.getSumTotalPriceInvoice() / 100;
+        totalSO.setText(String.format("%,.2f", so.getTotalSO()));
+        totalInvoice.setText(String.format("%,.2f", totalInvInfo));
         refund.setText(String.format("%,.2f", so.getSumDiscount()));
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

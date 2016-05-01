@@ -10,11 +10,16 @@ import database.ListSo;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -122,10 +127,16 @@ public class ListSO_view extends javax.swing.JFrame {
             SoBtn.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    new SaleOrder_view(soid).setVisible(true);
+                    SaleOrder_view soView = new SaleOrder_view(soid);
+                    if(soView.isVisible());
+                    else soView.setVisible(true);
+                    
+
+                    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                    soView.setLocation(screenSize.width / 3, screenSize.height / 4);
                 }
             });
-            
+
             pnlButton.add(SoBtn, BorderLayout.EAST);
 
             if (checkProblemSOs(soid)) {
@@ -138,8 +149,12 @@ public class ListSO_view extends javax.swing.JFrame {
                 refundBtn.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        new Refund_view(soid).setVisible(true);
+                        Refund_view refundView = new Refund_view(soid);
+                        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                        refundView.setLocation(screenSize.width / 3, screenSize.height / 4);
+                        refundView.setVisible(true);
                     }
+
                 });
                 pnlButton.add(refundBtn, BorderLayout.WEST);
                 pnlButton.setBackground(new Color(255, 0, 30));
@@ -147,7 +162,7 @@ public class ListSO_view extends javax.swing.JFrame {
                 pnlLine.setColor(Color.WHITE);
                 pnlButton.setBackground(Color.WHITE);
             }
-            
+
             pnlLine.add(pnlButton, BorderLayout.EAST);
             mainPanel.add(pnlLine);
         }
@@ -249,7 +264,7 @@ public class ListSO_view extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBtnMouseClicked
 
     private void searchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBoxActionPerformed
-         String selectItem = String.valueOf(searchBox.getSelectedItem());
+        String selectItem = String.valueOf(searchBox.getSelectedItem());
         searchText.setText("");
         switch (selectItem) {
             case "ใบสั่งขายปกติ":
@@ -313,7 +328,9 @@ public class ListSO_view extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListSO_view().setVisible(true);
+                ListSO_view list = new ListSO_view();
+                list.setVisible(true);
+                list.setLocationRelativeTo(null);
             }
         });
     }

@@ -1,10 +1,17 @@
 
 package view;
 import database.SaleOrder;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class SaleOrder_view extends javax.swing.JFrame {
@@ -20,10 +27,21 @@ public class SaleOrder_view extends javax.swing.JFrame {
         
         saleOrder.connect();
         initComponents();
+        resizeTable();
         addInfo();
         addProducts();
         summary();
         saleOrder.disconnect();
+    }
+    
+    private void resizeTable() {
+        soTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+        soTable.getColumnModel().getColumn(1).setPreferredWidth(75);
+        soTable.getColumnModel().getColumn(2).setPreferredWidth(140);
+        soTable.getColumnModel().getColumn(3).setPreferredWidth(60);
+        soTable.getColumnModel().getColumn(4).setPreferredWidth(60);
+        soTable.getColumnModel().getColumn(5).setPreferredWidth(90);
+        soTable.getColumnModel().getColumn(6).setPreferredWidth(90);
     }
     
     private void addInfo() {
@@ -66,13 +84,12 @@ public class SaleOrder_view extends javax.swing.JFrame {
     private void summary() {
         double sumTotalPrice = saleOrder.getSumTotalPriceSO();
         double discount = saleOrder.getDiscount();
-        //double finalPrice = (100-discount)*price/100;
         double tax = saleOrder.getTax();
         
         totalPrice.setText(String.format("%,.2f", sumTotalPrice));
         totalDiscount.setText(String.format("%.2f", discount));
         totalTax.setText(String.format("%.2f", tax));
-        //total.setText(finalPrice);
+        total.setText(String.format("%,.2f", saleOrder.getTotalSO()));
     }
     
     /**
@@ -127,6 +144,11 @@ public class SaleOrder_view extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jButton1.setText("เสร็จสิ้น");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 540, -1, 25));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -256,6 +278,7 @@ public class SaleOrder_view extends javax.swing.JFrame {
                 " No.", "รหัสสินค้า", "ชื่อสินค้า", "จำนวน", "หน่วย", "ราคา/หน่วย", "จำนวนเงิน"
             }
         ));
+        soTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         soTable.setRowHeight(20);
         jScrollPane1.setViewportView(soTable);
 
@@ -276,10 +299,24 @@ public class SaleOrder_view extends javax.swing.JFrame {
         saleOrder.connect();
         
         int invID = Integer.parseInt(String.valueOf(invCombo.getSelectedItem()));
-        new Invoice_view(invID).setVisible(true);
+        Invoice_view invoiceView = new Invoice_view(invID);
+        invoiceView.setVisible(true);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        invoiceView.setLocation(screenSize.width / 3 + 50, screenSize.height / 4 + 50);
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                invoiceView.dispose();
+            }
+        });
         
         saleOrder.disconnect();
     }//GEN-LAST:event_searchBtnMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel amountInvoice1;

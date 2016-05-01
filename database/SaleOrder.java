@@ -138,6 +138,7 @@ public class SaleOrder extends ConnectDB {
             product.setDocID(soID);
             sumTotalPrice += Double.parseDouble(String.valueOf(product.getTotalPriceSO()));
         }
+        
         return sumTotalPrice;
     }
     
@@ -150,6 +151,10 @@ public class SaleOrder extends ConnectDB {
             sumTotalPrice += inv.getSumTotalPrice();
         }
         return sumTotalPrice;
+    }
+    
+    public Double getTotalSO() {
+        return ((100-getDiscount())*getSumTotalPriceSO()/100) + (getSumTotalPriceSO()*getTax()/100); // price-discount+tax
     }
     
     public Double getSumDiscount() {

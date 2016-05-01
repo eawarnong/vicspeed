@@ -16,11 +16,22 @@ public class Invoice_view extends javax.swing.JFrame {
         this.invID = invID;
         
         inv.connect();
-        initComponents();        
+        initComponents();  
+        resizeTable();
         addInfo();
         addProducts();
         summary();
         inv.disconnect();
+    }
+    
+    private void resizeTable() {
+        invoiceTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+        invoiceTable.getColumnModel().getColumn(1).setPreferredWidth(75);
+        invoiceTable.getColumnModel().getColumn(2).setPreferredWidth(140);
+        invoiceTable.getColumnModel().getColumn(3).setPreferredWidth(60);
+        invoiceTable.getColumnModel().getColumn(4).setPreferredWidth(60);
+        invoiceTable.getColumnModel().getColumn(5).setPreferredWidth(90);
+        invoiceTable.getColumnModel().getColumn(6).setPreferredWidth(90);
     }
 
     private void addInfo() {
@@ -38,7 +49,7 @@ public class Invoice_view extends javax.swing.JFrame {
 
     private void addProducts() {
         ArrayList<HashMap> products = inv.getProducts();
-        DefaultTableModel model = (DefaultTableModel) productTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) invoiceTable.getModel();
         int line = 0;
         for (HashMap product : products) {
             model.addRow(new Object[0]);
@@ -100,7 +111,7 @@ public class Invoice_view extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         dateApprove = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        productTable = new javax.swing.JTable();
+        invoiceTable = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -111,6 +122,11 @@ public class Invoice_view extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
         jButton2.setText("เสร็จสิ้น");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 540, -1, 25));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -211,8 +227,8 @@ public class Invoice_view extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 700, 110));
 
-        productTable.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
-        productTable.setModel(new javax.swing.table.DefaultTableModel(
+        invoiceTable.setFont(new java.awt.Font("Angsana New", 0, 20)); // NOI18N
+        invoiceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -228,8 +244,8 @@ public class Invoice_view extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        productTable.setRowHeight(20);
-        jScrollPane3.setViewportView(productTable);
+        invoiceTable.setRowHeight(20);
+        jScrollPane3.setViewportView(invoiceTable);
 
         getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 700, 190));
 
@@ -247,6 +263,10 @@ public class Invoice_view extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel approveID;
     private javax.swing.JLabel companyName;
@@ -256,6 +276,7 @@ public class Invoice_view extends javax.swing.JFrame {
     private javax.swing.JLabel dateApprove;
     private javax.swing.JLabel finalPrice;
     private javax.swing.JLabel invoiceID;
+    private javax.swing.JTable invoiceTable;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -275,7 +296,6 @@ public class Invoice_view extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable productTable;
     private javax.swing.JLabel soID;
     private javax.swing.JLabel totalDiscount;
     private javax.swing.JLabel totalPrice;
