@@ -217,12 +217,12 @@ public class Refund_view extends javax.swing.JFrame {
     }//GEN-LAST:event_customerIDComponentShown
 
     private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
-        saleOrder.connect();
+        so.connect();
 
         int invID = Integer.parseInt(String.valueOf(invCombo.getSelectedItem()));
         new Invoice_view(invID).setVisible(true);
 
-        saleOrder.disconnect();
+        so.disconnect();
     }//GEN-LAST:event_searchBtnMouseClicked
 
     private void addInfo() {
