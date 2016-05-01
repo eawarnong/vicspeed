@@ -4,7 +4,7 @@ package view;
 import database.Invoice;
 import database.SaleOrder;
 import java.util.ArrayList;
-import java.util.HashMap;s
+import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 
 public class Refund_view extends javax.swing.JFrame {
