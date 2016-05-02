@@ -18,12 +18,15 @@ public class SaleOrder_view extends javax.swing.JFrame {
     
     private SaleOrder saleOrder;
     private int soID;
+    private Invoice_view invoiceView;
     /**
      * Creates new form Refund_view
      */
     public SaleOrder_view(int soID) {
+        
         saleOrder = new SaleOrder();
         this.soID = soID;
+        invoiceView = null;
         
         saleOrder.connect();
         initComponents();
@@ -296,22 +299,27 @@ public class SaleOrder_view extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
+        
+       if(invoiceView == null){
+        
         saleOrder.connect();
         
         int invID = Integer.parseInt(String.valueOf(invCombo.getSelectedItem()));
-        Invoice_view invoiceView = new Invoice_view(invID);
+        invoiceView = new Invoice_view(invID);
         invoiceView.setVisible(true);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         invoiceView.setLocation(screenSize.width / 3 + 50, screenSize.height / 4 + 50);
         
-        addWindowListener(new WindowAdapter() {
+        invoiceView.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 invoiceView.dispose();
+                invoiceView = null;
             }
         });
         
         saleOrder.disconnect();
+       }
     }//GEN-LAST:event_searchBtnMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
