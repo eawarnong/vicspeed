@@ -1,32 +1,24 @@
 
 package view;
 import database.SaleOrder;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class SaleOrder_view extends javax.swing.JFrame {
     
     private SaleOrder saleOrder;
     private int soID;
-    private Invoice_view invoiceView;
+
     /**
      * Creates new form Refund_view
      */
     public SaleOrder_view(int soID) {
-        
+
         saleOrder = new SaleOrder();
         this.soID = soID;
-        invoiceView = null;
         
         saleOrder.connect();
         initComponents();
@@ -299,27 +291,23 @@ public class SaleOrder_view extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
-        
-       if(invoiceView == null){
-        
+
         saleOrder.connect();
         
         int invID = Integer.parseInt(String.valueOf(invCombo.getSelectedItem()));
-        invoiceView = new Invoice_view(invID);
+        Invoice_view invoiceView = new Invoice_view(invID);
         invoiceView.setVisible(true);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        invoiceView.setLocation(screenSize.width / 3 + 50, screenSize.height / 4 + 50);
+        invoiceView.setLocationRelativeTo(null);
         
         invoiceView.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 invoiceView.dispose();
-                invoiceView = null;
             }
         });
         
         saleOrder.disconnect();
-       }
+       
     }//GEN-LAST:event_searchBtnMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

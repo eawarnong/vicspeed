@@ -10,10 +10,12 @@ public class Product extends ConnectDB {
 
     public void setProductID(int productID) {
         this.productID = productID;
+        //System.out.println("Set productID = " + productID + " Successfully");
     }
 
     public void setDocID(int docID) {
         this.docID = docID;
+        //System.out.println("Set docID = " + docID + " Successfully");
     }
 
     public int getProductID() {
@@ -34,7 +36,7 @@ public class Product extends ConnectDB {
 
     public String getProductAmountSO() {
         String sql = "SELECT AMOUNT FROM VICSPEED_SALEORDER AS SO, VICSPEED_PRODUCTSO AS P_SO"
-                + " WHERE PRODUCTID = " + productID
+                + " WHERE PRODUCTID = " + productID + " AND SO.SOID = " + docID
                 + " AND SO.SOID = P_SO.SOID";
         HashMap pamount = db.queryRow(sql);
         return String.valueOf(pamount.get("AMOUNT"));
@@ -42,7 +44,7 @@ public class Product extends ConnectDB {
 
     public String getProductAmountInvoice() {
         String sql = "SELECT AMOUNT FROM VICSPEED_INVOICE AS INV, VICSPEED_PRODUCTINV AS P_INV"
-                + " WHERE PRODUCTID = " + productID
+                + " WHERE PRODUCTID = " + productID + " AND INV.INVOICEID = " + docID
                 + " AND INV.INVOICEID = P_INV.INVOICEID";
         HashMap pamount = db.queryRow(sql);
         return String.valueOf(pamount.get("AMOUNT"));
@@ -86,13 +88,14 @@ public class Product extends ConnectDB {
     }
 }
 
-//class TestPro {
-//    public static void main(String[] args) {
-//        Product p = new Product();
-//        p.connect();
-//        p.setProductID(5001);
-//        System.out.println(p.getProductID());
-//        System.out.println(p.getProductType());
-//        p.disconnect();
-//    }
-//}
+class TestPro {
+    public static void main(String[] args) {
+        Product p = new Product();
+        p.connect();
+        
+        System.out.println("Get all invoice products from SO id = 40001: ");
+        System.out.println(p.getAllInvioceProducts(40001));
+
+        p.disconnect();
+    }
+}

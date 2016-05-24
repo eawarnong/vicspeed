@@ -14,6 +14,7 @@ public class Invoice extends ConnectDB {
 
     public void setInvoiceID(int invoiceID) {
         this.invoiceID = invoiceID;
+        //System.out.println("Set invoiceID = " + invoiceID + " Successfully");
     }
 
     public int getInvoiceID() {
@@ -117,25 +118,34 @@ public class Invoice extends ConnectDB {
 
 }
 
-//class testInv {
-//
-//    public static void main(String[] args) {
-//        Invoice i = new Invoice();
-//        i.connect();
-//        i.setInvoiceID(80001);
-//
-//        System.out.println(i.getInvoiceID());
-//        System.out.println(i.getDateInvoice());
-//        System.out.println(i.getApproveID());
-//        System.out.println(i.getDateApprove());
-//        System.out.println(i.getProductIDs());
-//        System.out.println("");
-//        System.out.println(i.getCustomerID());
-//        System.out.println(i.getCustomerName());
-//        System.out.println(i.getCompanyName());
-//        
-//        System.out.println(i.getProducts());
-//
-//        i.disconnect();
-//    }
-//}
+class testInv {
+
+    public static void main(String[] args) {
+        Invoice i = new Invoice();
+        i.connect();
+        i.setInvoiceID(80019);
+        
+        System.out.println("Sale Order ID: " + i.getSOID());
+        System.out.println("Invoice ID: " + i.getInvoiceID());
+        System.out.println("Invoice Date: " + i.getDateInvoice());
+        System.out.println("Approve ID: " + i.getApproveID());
+        System.out.println("Approve Date: " + i.getDateApprove());
+        
+        System.out.println("");
+        System.out.println("Customer ID: " + i.getCustomerID());
+        System.out.println("Customer Name: " + i.getCustomerName());
+        System.out.println("Company Name: " + i.getCompanyName());
+        
+        System.out.println("");
+        System.out.println("Products ID: " + i.getProductIDs());
+        System.out.println("Infomation of Products: ");
+        ArrayList<HashMap> ps = i.getProducts();
+        for(HashMap p : ps) {
+            System.out.println(p);
+        }
+        System.out.println("Total Price: " + i.getSumTotalPrice());
+        System.out.println("Discount: " + i.getDiscount());
+
+        i.disconnect();
+    }
+}

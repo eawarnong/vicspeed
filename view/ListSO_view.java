@@ -10,16 +10,11 @@ import database.ListSo;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -33,7 +28,7 @@ public class ListSO_view extends javax.swing.JFrame {
     /**
      * Creates new form ListSO_view
      */
-    ListSo list;
+    private ListSo list;
 
     public ListSO_view() {
         list = new ListSo();
@@ -128,12 +123,8 @@ public class ListSO_view extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     SaleOrder_view soView = new SaleOrder_view(soid);
-                    if(soView.isVisible());
-                    else soView.setVisible(true);
-                    
-
-                    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                    soView.setLocation(screenSize.width / 3, screenSize.height / 4);
+                    soView.setVisible(true);
+                    soView.setLocationRelativeTo(null);
                 }
             });
 
@@ -150,8 +141,7 @@ public class ListSO_view extends javax.swing.JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         Refund_view refundView = new Refund_view(soid);
-                        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                        refundView.setLocation(screenSize.width / 3, screenSize.height / 4);
+                        refundView.setLocationRelativeTo(null);
                         refundView.setVisible(true);
                     }
 

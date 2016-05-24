@@ -1,14 +1,10 @@
 package view;
 
-import database.Invoice;
 import database.SaleOrder;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -71,7 +67,8 @@ public class Refund_view extends javax.swing.JFrame {
         customerName = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         invCombo = new javax.swing.JComboBox();
-        searchBtn = new javax.swing.JButton();
+        searchInvBtn = new javax.swing.JButton();
+        searchSoBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         soTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -154,7 +151,7 @@ public class Refund_view extends javax.swing.JFrame {
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         SOid.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
-        jPanel1.add(SOid, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 110, 20));
+        jPanel1.add(SOid, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 60, 20));
 
         companyName.setFont(new java.awt.Font("Angsana New", 1, 20)); // NOI18N
         jPanel1.add(companyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 110, 20));
@@ -175,13 +172,21 @@ public class Refund_view extends javax.swing.JFrame {
 
         jPanel1.add(invCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 90, -1));
 
-        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/searchButton.png"))); // NOI18N
-        searchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        searchInvBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/searchButton.png"))); // NOI18N
+        searchInvBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                searchBtnMouseClicked(evt);
+                searchInvBtnMouseClicked(evt);
             }
         });
-        jPanel1.add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 30, 30));
+        jPanel1.add(searchInvBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 30, 30));
+
+        searchSoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/searchButton.png"))); // NOI18N
+        searchSoBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchSoBtnMouseClicked(evt);
+            }
+        });
+        jPanel1.add(searchSoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 30, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 700, 80));
 
@@ -229,14 +234,13 @@ public class Refund_view extends javax.swing.JFrame {
         //customerID.setText("text");
     }//GEN-LAST:event_customerIDComponentShown
 
-    private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
+    private void searchInvBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchInvBtnMouseClicked
         so.connect();
 
         int invID = Integer.parseInt(String.valueOf(invCombo.getSelectedItem()));
         Invoice_view invoiceView = new Invoice_view(invID);
         invoiceView.setVisible(true);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        invoiceView.setLocation(screenSize.width / 3 + 50, screenSize.height / 4 + 50);
+        invoiceView.setLocationRelativeTo(null);
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -246,11 +250,27 @@ public class Refund_view extends javax.swing.JFrame {
         });
 
         so.disconnect();
-    }//GEN-LAST:event_searchBtnMouseClicked
+    }//GEN-LAST:event_searchInvBtnMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         dispose();
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void searchSoBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchSoBtnMouseClicked
+        so.connect();
+        SaleOrder_view saleorder = new SaleOrder_view(soid);
+        saleorder.setVisible(true);
+        saleorder.setLocationRelativeTo(null);
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                saleorder.dispose();
+            }
+        });
+        
+        so.disconnect();
+    }//GEN-LAST:event_searchSoBtnMouseClicked
 
     private void addInfo() {
 
@@ -346,7 +366,8 @@ public class Refund_view extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel refund;
-    private javax.swing.JButton searchBtn;
+    private javax.swing.JButton searchInvBtn;
+    private javax.swing.JButton searchSoBtn;
     private javax.swing.JTable soTable;
     private javax.swing.JLabel totalInvoice;
     private javax.swing.JLabel totalSO;

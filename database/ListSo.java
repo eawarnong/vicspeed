@@ -72,23 +72,36 @@ public class ListSo extends ConnectDB {
 
 }
 
-//class TestList {
-//
-//    public static void main(String[] args) {
-//        ListSo l = new ListSo();
-//        ArrayList<HashMap> a = new ArrayList<>();
-//        
-//        System.out.println("Normal");
-//         a = l.getNormalSoIDs();
-//         System.out.println(a);
-//
-//         
-//         System.out.println();
-//         
-//         System.out.println("Problem");
-//         a = l.getProblemSoIDs();
-//         System.out.println(a);
-//         
-//        l.disconnect();
-//    }
-//}
+class TestList {
+
+    public static void main(String[] args) {
+        ListSo l = new ListSo();
+        l.connect();
+        
+        System.out.println("All SO ID: ");
+        ArrayList<HashMap> a = l.getAllSaleOrders();
+        int i = 1;
+        for(HashMap aa : a) {
+            if(i > 5) {
+                System.out.println("");
+                i = 1;
+            }
+            i++;
+            System.out.print(aa + " ");
+        }
+        
+        System.out.println("");
+        
+        System.out.println("All Normal ID: " + l.getNormalSoIDs());
+        System.out.println("All Problem ID: " + l.getProblemSoIDs());
+        
+        System.out.println("Get SO ID = 40001: " + l.getSO(40001));
+        System.out.println("Get All SO ID that have companyName = weloveshopping: " + l.getCompanySO("weloveshopping"));
+        System.out.println("Get All SO ID that have customerID = 1100000001: " + l.getCusIdSO(1100000001));
+        System.out.println("Get All SO ID that have customerName = Sehun: " + l.getCusNameSO("Sehun"));
+        System.out.println("Get All SO ID that have date = 2016-03-08 " + l.getDateSO("2016-03-08"));
+        
+
+        l.disconnect();
+    }
+}

@@ -176,21 +176,37 @@ class Test {
         SaleOrder s = new SaleOrder();
         s.connect();
         s.setSoID(40004);
-//
-//        System.out.println(s.getSoID());
-//        System.out.println(s.getDateSo());
-//        System.out.println(s.getDeadline());
-//        System.out.println(s.getCustomerID());
-//        System.out.println(s.getCustomerName());
-//        System.out.println(s.getCustomerCompany());
-//        System.out.println(s.getDiscount());
-//        System.out.println(s.getTax());
-//        System.out.println(s.getSaleName());
-//        System.out.println(s.getInvoiceIDs());
-//        System.out.println(s.getSumTotalPriceSO());
-//        System.out.println(s.getSumTotalPriceInvoice());
-        System.out.println(s.getProducts());
-        System.out.println(s.getAllInvioceProducts());
+
+        System.out.println("Sale Order ID: " + s.getSoID());
+        System.out.println("Sale Order Date: " + s.getDateSo());
+        System.out.println("Sale Name: " + s.getSaleName());
+        System.out.println("Deadline: " + s.getDeadline());
+        System.out.println("Get All product ID: "  + s.getProductIDs());
+        System.out.println("Information of Products: ");
+        ArrayList<HashMap> ps = s.getProducts();
+        for(HashMap p : ps) {
+            System.out.println(p);
+        }
+        System.out.println("Total Price: " + s.getSumTotalPriceSO());
+        System.out.println("Discount: " + s.getDiscount());
+        System.out.println("Tax: " + s.getTax());
+        System.out.println("Total SO Price (price-discount+tax): " + s.getTotalSO());
+        System.out.println("Credit: " + s.getCredit());
+        
+        System.out.println("");
+        System.out.println("Customer ID: " + s.getCustomerID());
+        System.out.println("Customer Name: " + s.getCustomerName());
+        System.out.println("Company Name: " + s.getCustomerCompany());
+        
+        System.out.println("");
+        System.out.println("Get All invoice ID: " + s.getInvoiceIDs());
+        System.out.println("Summary Information of All Products: " );
+        ArrayList<HashMap> pi = s.getAllInvioceProducts();
+        for(HashMap p : pi) {
+            System.out.println(p);
+        }
+        System.out.println("Total Price of All Invoices: " + s.getSumTotalPriceInvoice());
+        System.out.println("Sum Discount of All Invoices: " + s.getSumDiscount());
         s.disconnect();
     }
 }
